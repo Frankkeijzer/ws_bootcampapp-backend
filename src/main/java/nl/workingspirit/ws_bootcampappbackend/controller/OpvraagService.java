@@ -1,6 +1,5 @@
 package nl.workingspirit.ws_bootcampappbackend.controller;
 
-import java.util.List;
 import java.util.Optional;
 
 import javax.transaction.Transactional;
@@ -40,7 +39,4 @@ public class OpvraagService {
 		return gebruikerRepository.findByEmailadres(emailadres);
 	}
 	
-	public List<Gebruiker> geefGebruikersVoornaamA(){
-		return gebruikerRepository.findByVoornaamStartingWith("A");
-	}
 }
