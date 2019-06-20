@@ -1,12 +1,14 @@
-package ws.workingspirit.bootcamp.config;
+package nl.workingspirit.ws_bootcampappbackend.config;
 
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
-import ws.workingspirit.bootcamp.controller.GebruikerRepository;
-import ws.workingspirit.bootcamp.domein.Gebruiker;
-import ws.workingspirit.bootcamp.domein.Rol;
+import nl.workingspirit.ws_bootcampappbackend.controller.GebruikerRepository;
+import nl.workingspirit.ws_bootcampappbackend.domein.Gebruiker;
+import nl.workingspirit.ws_bootcampappbackend.domein.Rol;
+
+
 
 @Configuration
 public class ImportTestdata {
