@@ -40,14 +40,14 @@ public class User {
 	public String getFirstName() {
 		return firstName;
 	}
-	public void setVoornaam(String firstName) {
+	public void setFirstName(String firstName) {
 		this.firstName = firstName;
 	}
 
 	public String getLastName() {
 		return lastName;
 	}
-	public void setAchternaam(String lastName) {
+	public void setLastName(String lastName) {
 		this.lastName = lastName;
 	}
 	public String getEmailaddress() {
@@ -77,7 +77,7 @@ public class User {
 	public List<CodeAnswerSubmit> getCodeAnswerSubmit() {
 		return Collections.unmodifiableList(codeAnswerSubmit);
 	}
-	public void addUitwerking(CodeAnswerSubmit codeAnswerSubmit) {
+	public void addCodeAnser(CodeAnswerSubmit codeAnswerSubmit) {
 		this.codeAnswerSubmit.add(codeAnswerSubmit);
 	}
 	

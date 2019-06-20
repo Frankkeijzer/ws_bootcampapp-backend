@@ -35,8 +35,8 @@ public class ImportTestdata {
 
 	private User createUser(String achternaam, String emailadres, Role rol, String firstName, String wachtwoord) {
 		User gebruiker = new User();
-		gebruiker.setVoornaam(firstName);
-		gebruiker.setAchternaam(achternaam);
+		gebruiker.setFirstName(firstName);
+		gebruiker.setLastName(achternaam);
 		gebruiker.setEmailaddress(emailadres);
 		gebruiker.setPassword(wachtwoord);
 		gebruiker.setRole(rol);

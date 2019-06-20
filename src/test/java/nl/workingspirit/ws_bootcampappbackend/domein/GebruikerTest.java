@@ -13,8 +13,8 @@ public class GebruikerTest {
 	
 	public Gebruiker maakNieuweGebruiker() {
 	Gebruiker gebruiker = new Gebruiker();
-	gebruiker.setAchternaam("testGebruiker");
-	gebruiker.setVoornaam("Testelien");
+	gebruiker.setLastName("testGebruiker");
+	gebruiker.setFirstName("Testelien");
 	gebruiker.setId(100);
 	gebruiker.setEmailadres("Testelien@testGebruiker.nl");
 	gebruiker.setWachtwoord("testtest");
