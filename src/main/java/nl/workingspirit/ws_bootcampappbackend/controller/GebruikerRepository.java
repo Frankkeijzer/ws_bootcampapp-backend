@@ -1,6 +1,7 @@
 package nl.workingspirit.ws_bootcampappbackend.controller;
 
 
+import java.util.List;
 import java.util.Optional;
 
 import org.springframework.data.domain.Sort;
@@ -14,8 +15,7 @@ import nl.workingspirit.ws_bootcampappbackend.domein.Rol;
 public interface GebruikerRepository extends CrudRepository<Gebruiker,Long>{
 	Optional<Gebruiker> findByEmailadres(String emailadres);
 	Optional<Gebruiker> findByWachtwoord(String wachtwoord);
-	Iterable<Gebruiker> findByRol(Rol rol);
-	
+	List<Gebruiker> findByVoornaamStartingWith(String letter);
 	
 	Iterable<Gebruiker> findByRolOrderByAchternaamAsc(Rol rol);
 
