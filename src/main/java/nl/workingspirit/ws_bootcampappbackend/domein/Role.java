@@ -2,21 +2,21 @@ package nl.workingspirit.ws_bootcampappbackend.domein;
 
 import javax.persistence.Id;
 
-public enum Rol {
+public enum Role {
 		STUDENT("Student"),
 		ADMIN("Admin"),
 		DOCENT("Docent"),
 		MEDEWERKER("Medewerker");
 
 		@Id
-		String omschrijving;
+		String description;
 
 		public String getOmschrijving() {
-			return omschrijving;
+			return description;
 		}
 
-		Rol(String omschrijving) {
-			this.omschrijving = omschrijving;
+		Role(String description) {
+			this.description = description;
 		}
 
 }

@@ -9,16 +9,16 @@ import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 
 @Entity
-public class Uitwerking {
+public class CodeAnswerSubmit {
 	@Id
 	@GeneratedValue
 	private Long id;
 	@Column(length=10000)
 	private String code;
-	private Timestamp tijdstip;
+	private Timestamp timeOfSubmit;
 	
 	@ManyToOne
-	private Gebruiker gebruiker;
+	private User user;
 	
 	public Long getId() {
 		return id;
@@ -32,11 +32,11 @@ public class Uitwerking {
 	public void setCode(String code) {
 		this.code = code;
 	}
-	public Timestamp getTijdstip() {
-		return tijdstip;
+	public Timestamp getTimeOfSubmit() {
+		return timeOfSubmit;
 	}
-	public void setTijdstip(Timestamp tijdstip) {
-		this.tijdstip = tijdstip;
+	public void setTimeOfSubmit(Timestamp timeOfSubmit) {
+		this.timeOfSubmit = timeOfSubmit;
 	}
 	
 

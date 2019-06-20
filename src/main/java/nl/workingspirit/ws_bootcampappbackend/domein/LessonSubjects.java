@@ -6,33 +6,33 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 
 @Entity
-public class Lesstof {
+public class LessonSubjects {
 @Id
 @GeneratedValue
 private Long id;
-private String dag;
-private String titel;
+private String day;
+private String title;
 @Column(length = 1000)
 private String code;
 @Column(length = 1000)
-private String beschrijving;
+private String description;
 public Long getId() {
 	return id;
 }
 public void setId(Long id) {
 	this.id = id;
 }
-public String getDag() {
-	return dag;
+public String getDay() {
+	return day;
 }
-public void setDag(String dag) {
-	this.dag = dag;
+public void setDay(String day) {
+	this.day = day;
 }
-public String getTitel() {
-	return titel;
+public String getTitle() {
+	return title;
 }
-public void setTitel(String titel) {
-	this.titel = titel;
+public void setTitle(String title) {
+	this.title = title;
 }
 public String getCode() {
 	return code;
@@ -40,11 +40,11 @@ public String getCode() {
 public void setCode(String code) {
 	this.code = code;
 }
-public String getBeschrijving() {
-	return beschrijving;
+public String getDescription() {
+	return description;
 }
-public void setBeschrijving(String beschrijving) {
-	this.beschrijving = beschrijving;
+public void setBeschrijving(String description) {
+	this.description = description;
 }
 
 }
