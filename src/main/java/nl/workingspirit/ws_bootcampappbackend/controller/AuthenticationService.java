@@ -10,15 +10,15 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
 
-import nl.workingspirit.ws_bootcampappbackend.domein.Gebruiker;
+import nl.workingspirit.ws_bootcampappbackend.domein.User;
 
 
 @Service
 @Transactional
-public class AuthenticatieService {
+public class AuthenticationService {
 
-	public boolean authenticatieGebruiker(Gebruiker gebruiker, String wachtwoord) {
-		return gebruiker != null && gebruiker.getWachtwoord().equals(wachtwoord);
+	public boolean userAuthentication(User user, String password) {
+		return user != null && user.getPassword().equals(password);
 	
 	}
 }

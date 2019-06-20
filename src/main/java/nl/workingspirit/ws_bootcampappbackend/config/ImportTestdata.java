@@ -4,42 +4,42 @@ import org.springframework.boot.CommandLineRunner;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
-import nl.workingspirit.ws_bootcampappbackend.controller.GebruikerRepository;
-import nl.workingspirit.ws_bootcampappbackend.domein.Gebruiker;
-import nl.workingspirit.ws_bootcampappbackend.domein.Rol;
+import nl.workingspirit.ws_bootcampappbackend.controller.UserRepository;
+import nl.workingspirit.ws_bootcampappbackend.domein.User;
+import nl.workingspirit.ws_bootcampappbackend.domein.Role;
 
 
 
 @Configuration
 public class ImportTestdata {
 	@Bean
-	public CommandLineRunner importGebruikersTestdata(GebruikerRepository gebruikerRepository) {
+	public CommandLineRunner importUserTestdata(UserRepository userRepository) {
 		return (args) -> {
 			//data opzet is gelijk aan het Insert script wat met SQL kan worden ingelezen
-			gebruikerRepository.save(createGebruiker("Graafmans", "w.graafmans@workingspirit.nl", Rol.STUDENT, "Wietse", "kombinnen"));
-			gebruikerRepository.save(createGebruiker("Nekoui", "a.nekoui@workingspirit.nl", Rol.STUDENT, "Arash", "kombinnen"));
-			gebruikerRepository.save(createGebruiker("Kikkert", "j.kikkert@workingspirit.nl", Rol.STUDENT, "Justin", "kombinnen"));
-			gebruikerRepository.save(createGebruiker("Westhof", "e.Westhof@workingspirit.nl", Rol.STUDENT, "Eline", "kombinnen"));
-			gebruikerRepository.save(createGebruiker("Smit", "d.smit@workingspirit.nl", Rol.STUDENT, "David", "kombinnen"));
-			gebruikerRepository.save(createGebruiker("Keijzer", "f.keijzer@workingspirit.nl", Rol.STUDENT, "Frank", "kombinnen"));
-			gebruikerRepository.save(createGebruiker("Lunding", "m.lunding@workingspirit.nl", Rol.STUDENT, "Mark", "kombinnen"));
-			gebruikerRepository.save(createGebruiker("Loenen van", "digitaleservice@gmail.com", Rol.DOCENT, "Felxi", "kombinnen"));
-			gebruikerRepository.save(createGebruiker("Faber", "faber.coding101@gmail.com", Rol.DOCENT, "Cor", "kombinnen"));
-			gebruikerRepository.save(createGebruiker("Kerkdijk", "m.kerkdijk@workingspirit.nl", Rol.DOCENT, "Marco", "kombinnen"));
-			gebruikerRepository.save(createGebruiker("Lohman", "raymond@carpago.nl", Rol.DOCENT, "Raymond", "kombinnen"));
-			gebruikerRepository.save(createGebruiker("Scheuneman", "f.scheuneman@workingspirit.nl", Rol.ADMIN, "Frans", "kombinnen"));
-			gebruikerRepository.save(createGebruiker("Oosterhuis", "r.oosterhuis@workingspirit.nl", Rol.ADMIN, "Richard", "kombinnen"));
-			gebruikerRepository.save(createGebruiker("Gulik, van", "m.vangulik@workingspirit.nl", Rol.MEDEWERKER, "Mathijs", "kombinnen"));
+			userRepository.save(createUser("Graafmans", "w.graafmans@workingspirit.nl", Role.STUDENT, "Wietse", "kombinnen"));
+			userRepository.save(createUser("Nekoui", "a.nekoui@workingspirit.nl", Role.STUDENT, "Arash", "kombinnen"));
+			userRepository.save(createUser("Kikkert", "j.kikkert@workingspirit.nl", Role.STUDENT, "Justin", "kombinnen"));
+			userRepository.save(createUser("Westhof", "e.Westhof@workingspirit.nl", Role.STUDENT, "Eline", "kombinnen"));
+			userRepository.save(createUser("Smit", "d.smit@workingspirit.nl", Role.STUDENT, "David", "kombinnen"));
+			userRepository.save(createUser("Keijzer", "f.keijzer@workingspirit.nl", Role.STUDENT, "Frank", "kombinnen"));
+			userRepository.save(createUser("Lunding", "m.lunding@workingspirit.nl", Role.STUDENT, "Mark", "kombinnen"));
+			userRepository.save(createUser("Loenen van", "digitaleservice@gmail.com", Role.DOCENT, "Felxi", "kombinnen"));
+			userRepository.save(createUser("Faber", "faber.coding101@gmail.com", Role.DOCENT, "Cor", "kombinnen"));
+			userRepository.save(createUser("Kerkdijk", "m.kerkdijk@workingspirit.nl", Role.DOCENT, "Marco", "kombinnen"));
+			userRepository.save(createUser("", "raymond@carpago.nl", Role.DOCENT, "Raymond", "kombinnen"));
+			userRepository.save(createUser("Scheuneman", "f.scheuneman@workingspirit.nl", Role.ADMIN, "Frans", "kombinnen"));
+			userRepository.save(createUser("Oosterhuis", "r.oosterhuis@workingspirit.nl", Role.ADMIN, "Richard", "kombinnen"));
+			userRepository.save(createUser("Gulik, van", "m.vangulik@workingspirit.nl", Role.MEDEWERKER, "Mathijs", "kombinnen"));
 		};
 	}
 
-	private Gebruiker createGebruiker(String achternaam, String emailadres, Rol rol, String voornaam, String wachtwoord) {
-		Gebruiker gebruiker = new Gebruiker();
-		gebruiker.setVoornaam(voornaam);
+	private User createUser(String achternaam, String emailadres, Role rol, String firstName, String wachtwoord) {
+		User gebruiker = new User();
+		gebruiker.setVoornaam(firstName);
 		gebruiker.setAchternaam(achternaam);
-		gebruiker.setEmailadres(emailadres);
-		gebruiker.setWachtwoord(wachtwoord);
-		gebruiker.setRol(rol);
+		gebruiker.setEmailaddress(emailadres);
+		gebruiker.setPassword(wachtwoord);
+		gebruiker.setRole(rol);
 		return gebruiker;
 	}
 	
