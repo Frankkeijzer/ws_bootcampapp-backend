@@ -54,7 +54,7 @@ public class OpvraagServiceTest {
     	Gebruiker studenten [] = {student, student2};
     	Iterable<?> iterableStudentenVerwacht = Arrays.asList(studenten);
     	
-    	when(gebruikerRepository.findByRol(Rol.STUDENT)).thenReturn((Iterable<Gebruiker>) iterableStudentenVerwacht);
+    	when(gebruikerRepository.findByRolOrderByAchternaamAsc(Rol.STUDENT)).thenReturn((Iterable<Gebruiker>) iterableStudentenVerwacht);
     	Iterable<Gebruiker> iterableStudentenEcht = sut.geefPerRolAlleGebruikers(Rol.STUDENT);
     	Assert.assertEquals(iterableStudentenVerwacht, iterableStudentenEcht);
     	
@@ -72,7 +72,7 @@ public class OpvraagServiceTest {
     	Gebruiker docenten [] = {docent};
     	Iterable<?> docentenVerwacht = Arrays.asList(docenten);
     	
-    	when(gebruikerRepository.findByRol(Rol.DOCENT)).thenReturn((Iterable<Gebruiker>) docentenVerwacht);
+    	when(gebruikerRepository.findByRolOrderByAchternaamAsc(Rol.DOCENT)).thenReturn((Iterable<Gebruiker>) docentenVerwacht);
     	Iterable<Gebruiker> docentenEcht = sut.geefPerRolAlleGebruikers(Rol.DOCENT);
     	Assert.assertEquals(docentenVerwacht, docentenEcht);
     	
