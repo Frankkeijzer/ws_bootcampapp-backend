@@ -40,8 +40,6 @@ public class LoginServiceTest {
 		testUser.setRole(Role.STUDENT);
 	}
 	
-		
-	
 	@Test
 	public void inlogGebruikerGebruikerNietGevonden () {
 			
@@ -49,8 +47,6 @@ public class LoginServiceTest {
 		Optional<LoginDTO> sendUser = sut.userLogin(testUser);
 		Assert.assertFalse(sendUser.isPresent()); 
 		Mockito.verify(authenticationService, Mockito.never()).userAuthentication(any(User.class), anyString());
-		
-		
 	}
 	
 	@Test
@@ -61,8 +57,6 @@ public class LoginServiceTest {
 		Optional<LoginDTO> sendUser = sut.userLogin(testUser);
 		Assert.assertFalse(sendUser.isPresent());
 		Mockito.verify(authenticationService, Mockito.times(1)).userAuthentication(any(User.class), anyString());
-		
-		
 	}
 	
 	@Test
@@ -75,8 +69,4 @@ public class LoginServiceTest {
 		Mockito.verify(authenticationService, Mockito.times(1)).userAuthentication(any(User.class), anyString());
 		
 	}
-	
-
-
-
 }

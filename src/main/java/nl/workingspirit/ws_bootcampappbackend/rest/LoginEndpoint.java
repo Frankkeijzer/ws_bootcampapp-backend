@@ -20,7 +20,7 @@ import nl.workingspirit.ws_bootcampappbackend.dto.LoginDTO;
 @Configuration
 @EnableWebSecurity
 @RestController
-public class LoginEndphoint extends WebSecurityConfigurerAdapter {
+public class LoginEndpoint extends WebSecurityConfigurerAdapter {
 	@Autowired
 	LoginService loginService;
 
@@ -32,7 +32,6 @@ public class LoginEndphoint extends WebSecurityConfigurerAdapter {
 		http.authorizeRequests().antMatchers("**").permitAll().anyRequest().authenticated().and().httpBasic().and().csrf().disable();
 	}
 
-	
 	@PostMapping("userLogin")
 	public ResponseEntity<LoginDTO> postUserLogin(@RequestBody User user) {
 		Optional<LoginDTO> userLogin = loginService.userLogin(user);

@@ -1,7 +1,5 @@
 package nl.workingspirit.ws_bootcampappbackend.dto;
 
-import java.util.Optional;
-
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
 
@@ -13,7 +11,6 @@ import nl.workingspirit.ws_bootcampappbackend.domein.Role;
 
 public class LoginDTO {
 	
-
 	private String firstName;
 	private String lastName;
 

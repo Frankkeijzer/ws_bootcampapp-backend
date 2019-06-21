@@ -3,17 +3,7 @@ package nl.workingspirit.ws_bootcampappbackend.domein;
 import java.util.Collections;
 import java.util.List;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.EnumType;
-import javax.persistence.Enumerated;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.OneToMany;
-
-import org.hibernate.annotations.Sort;
-
+import javax.persistence.*;
 
 @Entity
 public class User {
@@ -23,7 +13,6 @@ public class User {
 	@Column(nullable=false)
 	private String firstName;
 	@Column(nullable=false)
-	@Sort
 	private String lastName;
 	@Column(nullable=false, unique=true) 
 	private String emailaddress;

@@ -1,12 +1,7 @@
 package nl.workingspirit.ws_bootcampappbackend.controller;
 
 import org.assertj.core.util.Arrays;
-import org.junit.After;
-import org.junit.Before;
-import org.junit.Rule;
-import org.junit.Test;
-import org.junit.rules.ExpectedException;
-import org.junit.runner.RunWith;
+import org.junit.*;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.junit.MockitoJUnitRunner;
@@ -14,10 +9,11 @@ import org.mockito.junit.MockitoJUnitRunner;
 import nl.workingspirit.ws_bootcampappbackend.domein.Role;
 import nl.workingspirit.ws_bootcampappbackend.domein.User;
 
-import org.junit.Assert;
+import org.junit.rules.ExpectedException;
+import org.junit.runner.RunWith;
+
 import static org.mockito.Mockito.when;
 import static org.mockito.ArgumentMatchers.*;
-
 
 import java.util.Optional;
 
