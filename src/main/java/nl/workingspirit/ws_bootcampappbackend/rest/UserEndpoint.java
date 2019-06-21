@@ -54,7 +54,6 @@ public class UserEndpoint {
 	
 	@GetMapping("getAllUsers/{role}")
 	public Iterable<User> getAllUsersPerRole(@PathVariable Role role){
-//		System.out.println("Binnengekomen rol: " + role);
 		return gettingService.getAllUsersPerRole(role);
 	}
 	
