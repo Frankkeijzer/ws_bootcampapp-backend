@@ -14,7 +14,7 @@ public class CodeAnswerSubmit {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
-	@Column(length=10000)
+	@Column(length=10000, nullable=false)
 	private String code;
 	private Timestamp timeOfSubmit;
 	

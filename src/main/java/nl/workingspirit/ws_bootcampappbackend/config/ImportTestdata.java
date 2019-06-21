@@ -26,7 +26,7 @@ public class ImportTestdata {
 			userRepository.save(createUser("Loenen van", "digitaleservice@gmail.com", Role.DOCENT, "Felxi", "kombinnen"));
 			userRepository.save(createUser("Faber", "faber.coding101@gmail.com", Role.DOCENT, "Cor", "kombinnen"));
 			userRepository.save(createUser("Kerkdijk", "m.kerkdijk@workingspirit.nl", Role.DOCENT, "Marco", "kombinnen"));
-			userRepository.save(createUser("", "raymond@carpago.nl", Role.DOCENT, "Raymond", "kombinnen"));
+			userRepository.save(createUser("Loman", "raymond@carpago.nl", Role.DOCENT, "Raymond", "kombinnen"));
 			userRepository.save(createUser("Scheuneman", "f.scheuneman@workingspirit.nl", Role.ADMIN, "Frans", "kombinnen"));
 			userRepository.save(createUser("Oosterhuis", "r.oosterhuis@workingspirit.nl", Role.ADMIN, "Richard", "kombinnen"));
 			userRepository.save(createUser("Gulik, van", "m.vangulik@workingspirit.nl", Role.MEDEWERKER, "Mathijs", "kombinnen"));
