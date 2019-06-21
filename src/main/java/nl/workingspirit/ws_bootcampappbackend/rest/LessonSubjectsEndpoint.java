@@ -13,8 +13,6 @@ import nl.workingspirit.ws_bootcampappbackend.domein.LessonSubjects;
 @RestController
 public class LessonSubjectsEndpoint {
 
-	//@Autowired 
-	//LesstofService lesstofService;
 	@Autowired
 	SavingService savingService;
 	@Autowired
@@ -24,13 +22,10 @@ public class LessonSubjectsEndpoint {
 	public void postLessonSubjects(@RequestBody LessonSubjects lessonSubjects) {
 		System.out.println("De lesstof is toegevoegd");
 		savingService.postLessonSubjects(lessonSubjects);
-		
 	}
 	
 	@GetMapping("GetLessonSubjects")
 	public Iterable<LessonSubjects> getAllLessonSubjects(){
 		return gettingService.getAllLessonSubjects();
 	}
-	
-	
 }
