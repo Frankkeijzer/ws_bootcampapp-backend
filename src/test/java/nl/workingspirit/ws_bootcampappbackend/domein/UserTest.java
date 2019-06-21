@@ -15,7 +15,6 @@ public class UserTest {
 	User user = new User();
 	user.setLastName("testGebruiker");
 	user.setFirstName("Testelien");
-	user.setId(100);
 	user.setEmailaddress("Testelien@testGebruiker.nl");
 	user.setPassword("testtest");
 	user.setRole(Role.STUDENT);
