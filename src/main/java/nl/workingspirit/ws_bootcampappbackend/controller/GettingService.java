@@ -19,18 +19,7 @@ public class GettingService {
 	@Autowired
 	LessonSubjectsRepository lessonSubjectsRepository;
 	
-	public Iterable<User> getAllUsers() {
-		return userRepository.findAll();
-	}
-	
-	public Iterable<User> getAllUsersPerRole(Role role){
-		return userRepository.findByRoleOrderByLastNameAsc(role);
-	}
-	
-	public Optional<User> getUser(Long id) {
-		return userRepository.findById(id);
-	}
-	
+
 	public Iterable<LessonSubjects> getAllLessonSubjects(){
 		return lessonSubjectsRepository.findAll();
 	}

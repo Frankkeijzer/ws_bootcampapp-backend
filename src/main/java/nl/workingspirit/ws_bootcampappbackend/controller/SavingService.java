@@ -19,16 +19,10 @@ public class SavingService {
 	@Autowired
 	CodeAnswerSubmitRepository codeAnswerSubmitRepository;
 	
-	public void postGebruiker(User user) {
-		userRepository.save(user);
-	}
-	
 	public void postLessonSubjects(LessonSubjects lessonSubjects) {
 		lessonSubjectsRepository.save(lessonSubjects);
 	}
-	public void updateUser(User user) {
-		userRepository.save(user);
-	}
+
 	public void postCodeAnswerSubmit(CodeAnswerSubmit codeAnswerSubmit) {
 		codeAnswerSubmitRepository.save(codeAnswerSubmit);
 		
