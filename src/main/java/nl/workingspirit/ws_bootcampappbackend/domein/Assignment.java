@@ -3,6 +3,7 @@ package nl.workingspirit.ws_bootcampappbackend.domein;
 import java.util.Collections;
 import java.util.List;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -17,8 +18,11 @@ public class Assignment {
 	private String level;
 	private String day;
 	private boolean visible;
+	@Column(length = 1000)
 	private String description;
+	@Column(length = 1000)
 	private String title;
+	@Column(length = 10000)
 	private String codeExample;
 
 	@OneToMany

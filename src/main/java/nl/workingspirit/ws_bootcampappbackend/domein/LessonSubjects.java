@@ -14,7 +14,7 @@ private String day;
 private String title;
 @Column(length = 1000)
 private String code;
-@Column(length = 1000)
+@Column(length = 10000)
 private String description;
 public Long getId() {
 	return id;
