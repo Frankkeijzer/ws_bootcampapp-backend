@@ -20,6 +20,6 @@ public class UserTest {
 	user.setPassword("testtest");
 	user.setRole(Role.STUDENT);
 	return user;
-}
+	}
 
 }

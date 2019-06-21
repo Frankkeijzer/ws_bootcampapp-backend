@@ -36,10 +36,7 @@ public class AuthenticationServiceTest {
 		
 		//when(sut.authenticatieGebruiker(any(Gebruiker.class), anyString())).thenReturn(false);
 	//	Assert.assertFalse(any(Gebruiker.class).equals(null));
-	//	Mockito.verify(testUser).equals(isNull());
-		
-		
-		
+	//	Mockito.verify(testUser).equals(isNull());	
 	}
 	
 	@Test
@@ -52,5 +49,4 @@ public class AuthenticationServiceTest {
 		
 	}
 
-	
 }

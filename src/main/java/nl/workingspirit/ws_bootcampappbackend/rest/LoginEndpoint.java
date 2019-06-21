@@ -32,7 +32,6 @@ public class LoginEndpoint extends WebSecurityConfigurerAdapter {
 		http.authorizeRequests().antMatchers("**").permitAll().anyRequest().authenticated().and().httpBasic().and().csrf().disable();
 	}
 
-	
 	@PostMapping("userLogin")
 	public ResponseEntity<LoginDTO> postUserLogin(@RequestBody User user) {
 		Optional<LoginDTO> userLogin = loginService.userLogin(user);
