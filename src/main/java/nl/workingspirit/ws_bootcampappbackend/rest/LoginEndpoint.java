@@ -20,7 +20,7 @@ import nl.workingspirit.ws_bootcampappbackend.dto.LoginDTO;
 @Configuration
 @EnableWebSecurity
 @RestController
-public class LoginEndphoint extends WebSecurityConfigurerAdapter {
+public class LoginEndpoint extends WebSecurityConfigurerAdapter {
 	@Autowired
 	LoginService loginService;
 
@@ -35,8 +35,8 @@ public class LoginEndphoint extends WebSecurityConfigurerAdapter {
 	
 	@PostMapping("userLogin")
 	public ResponseEntity<LoginDTO> postUserLogin(@RequestBody User user) {
-		System.out.println("\ndit is de user in userLogin: " + user.getEmailaddress());
 		Optional<LoginDTO> userLogin = loginService.userLogin(user);
+		System.out.println("\ndit is de user in userLogin: " + loginService.userLogin(user).get());
 		return userLogin.map(inlogDTO -> ResponseEntity.ok(inlogDTO))
 				.orElse(ResponseEntity.notFound().build());
 	

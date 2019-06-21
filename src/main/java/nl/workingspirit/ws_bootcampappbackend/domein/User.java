@@ -12,9 +12,6 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 
-import org.hibernate.annotations.Sort;
-
-
 @Entity
 public class User {
 	@Id
@@ -23,7 +20,6 @@ public class User {
 	@Column(nullable=false)
 	private String firstName;
 	@Column(nullable=false)
-	@Sort
 	private String lastName;
 	@Column(nullable=false, unique=true) 
 	private String emailaddress;
