@@ -36,7 +36,6 @@ public class LoginEndpoint extends WebSecurityConfigurerAdapter {
 	@PostMapping("userLogin")
 	public ResponseEntity<LoginDTO> postUserLogin(@RequestBody User user) {
 		Optional<LoginDTO> userLogin = loginService.userLogin(user);
-		System.out.println("\ndit is de user in userLogin: " + loginService.userLogin(user).get());
 		return userLogin.map(inlogDTO -> ResponseEntity.ok(inlogDTO))
 				.orElse(ResponseEntity.notFound().build());
 	
