@@ -16,9 +16,6 @@ import nl.workingspirit.ws_bootcampappbackend.domein.User;
 public class UserGetService {
 	
 	@Autowired
-	GettingService gettingService;
-	
-	@Autowired
 	UserRepository userRepository;
 	
 	public ResponseEntity<User> getAllUserInformationById(Long id) {
@@ -44,5 +41,4 @@ public class UserGetService {
 	public Iterable<User> getAllUsers() {
 		return userRepository.findAll();
 	}
-
 }
