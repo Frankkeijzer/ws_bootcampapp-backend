@@ -6,26 +6,25 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
-import nl.workingspirit.ws_bootcampappbackend.controller.SavingService;
-import nl.workingspirit.ws_bootcampappbackend.controller.GettingService;
+import nl.workingspirit.ws_bootcampappbackend.controller.LessonSubjectsGetService;
+import nl.workingspirit.ws_bootcampappbackend.controller.LessonSubjectsPostService;
 import nl.workingspirit.ws_bootcampappbackend.domein.LessonSubjects;
 
 @RestController
 public class LessonSubjectsEndpoint {
 
 	@Autowired
-	SavingService savingService;
+	LessonSubjectsPostService lessonSubjectsPostService;
 	@Autowired
-	GettingService gettingService;
+	LessonSubjectsGetService lessonSubjectsGetService;
 	
 	@PostMapping("AddLessonSubjects")
 	public void postLessonSubjects(@RequestBody LessonSubjects lessonSubjects) {
-		System.out.println("De lesstof is toegevoegd");
-		savingService.postLessonSubjects(lessonSubjects);
+		lessonSubjectsPostService.postLessonSubjects(lessonSubjects);
 	}
 	
 	@GetMapping("GetLessonSubjects")
 	public Iterable<LessonSubjects> getAllLessonSubjects(){
-		return gettingService.getAllLessonSubjects();
+		return lessonSubjectsGetService.getAllLessonSubjects();
 	}
 }

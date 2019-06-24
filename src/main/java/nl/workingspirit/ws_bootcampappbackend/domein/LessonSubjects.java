@@ -9,7 +9,8 @@ import javax.persistence.Id;
 @Entity
 public class LessonSubjects {
 @Id
-@GeneratedValue(strategy = GenerationType.IDENTITY)private Long id;
+@GeneratedValue(strategy = GenerationType.IDENTITY)
+private Long id;
 private String day;
 private String title;
 @Column(length = 1000)

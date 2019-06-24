@@ -14,9 +14,6 @@ import nl.workingspirit.ws_bootcampappbackend.domein.User;
 @Transactional
 public class UserPostService {
 
-	@Autowired 
-	SavingService savingService;
-	
 	@Autowired
 	UserGetService userGetService;
 	
