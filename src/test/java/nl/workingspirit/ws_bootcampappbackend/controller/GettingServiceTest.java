@@ -27,7 +27,7 @@ public class GettingServiceTest {
     private UserRepository userRepository;
 
     @InjectMocks
-    private GettingService sut;
+    private UserGetService sut;
 
     @Before
     public void setUp() {
