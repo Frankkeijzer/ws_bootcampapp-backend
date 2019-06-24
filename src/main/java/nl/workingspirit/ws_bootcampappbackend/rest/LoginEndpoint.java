@@ -1,7 +1,5 @@
 package nl.workingspirit.ws_bootcampappbackend.rest;
 
-import java.util.Optional;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.http.ResponseEntity;

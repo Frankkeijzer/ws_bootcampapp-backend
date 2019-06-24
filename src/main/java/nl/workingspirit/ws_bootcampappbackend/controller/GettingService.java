@@ -9,7 +9,6 @@ import org.springframework.stereotype.Service;
 
 import nl.workingspirit.ws_bootcampappbackend.domein.User;
 import nl.workingspirit.ws_bootcampappbackend.domein.LessonSubjects;
-import nl.workingspirit.ws_bootcampappbackend.domein.Role;
 
 @Service
 @Transactional
