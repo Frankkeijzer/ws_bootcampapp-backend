@@ -66,7 +66,4 @@ public class User {
 	public void addCodeAnser(CodeAnswerSubmit codeAnswerSubmit) {
 		this.codeAnswerSubmit.add(codeAnswerSubmit);
 	}
-	
-
-	
 }

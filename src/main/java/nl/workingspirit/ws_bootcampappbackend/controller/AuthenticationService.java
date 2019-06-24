@@ -10,6 +10,5 @@ public class AuthenticationService {
 
 	public boolean userAuthentication(User user, String password) {
 		return user != null && user.getPassword().equals(password);
-	
 	}
 }

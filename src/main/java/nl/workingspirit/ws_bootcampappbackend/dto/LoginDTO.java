@@ -50,6 +50,4 @@ public class LoginDTO {
 	public void setLastName(String lastName) {
 		this.lastName = lastName;
 	}
-	
-	
 }

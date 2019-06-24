@@ -16,14 +16,10 @@ import nl.workingspirit.ws_bootcampappbackend.domein.User;
 public class UserGetService {
 	
 	@Autowired
-	GettingService gettingService;
-	
-	@Autowired
 	UserRepository userRepository;
 	
 	public ResponseEntity<User> getAllUserInformationById(Long id) {
 		Optional<User> optionalUser = userRepository.findById(id);
-		
 		return optionalUser.map(user -> ResponseEntity.ok(user))
 								.orElse(ResponseEntity.notFound().build());
 //		if (optionalGebruiker.isPresent()) {
@@ -44,5 +40,4 @@ public class UserGetService {
 	public Iterable<User> getAllUsers() {
 		return userRepository.findAll();
 	}
-
 }

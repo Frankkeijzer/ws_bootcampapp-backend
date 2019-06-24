@@ -18,7 +18,7 @@ public class Assignment {
 	private String level;
 	private String day;
 	private boolean visible;
-	@Column(length = 1000)
+	@Column(length = 10000)
 	private String description;
 	@Column(length = 1000)
 	private String title;
@@ -87,5 +87,4 @@ public class Assignment {
 	public void addUitwerking(CodeAnswerSubmit codeAnswerSubmit) {
 		this.codeAnswerSubmit.add(codeAnswerSubmit);
 	}
-	
 }

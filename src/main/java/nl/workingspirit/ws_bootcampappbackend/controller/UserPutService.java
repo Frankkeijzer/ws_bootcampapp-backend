@@ -35,5 +35,4 @@ public class UserPutService {
 			return new ResponseEntity<User>(HttpStatus.BAD_REQUEST);
 		}
 	}
-
 }

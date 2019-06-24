@@ -36,6 +36,4 @@ public class CodeAnswerSubmit {
 	public void setTimeOfSubmit(Timestamp timeOfSubmit) {
 		this.timeOfSubmit = timeOfSubmit;
 	}
-	
-
 }
