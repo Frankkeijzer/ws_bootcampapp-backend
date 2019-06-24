@@ -18,5 +18,4 @@ public class CodeAnswerSubmitEndpoint {
 	public void postCodeAnswers(@RequestBody CodeAnswerSubmit codeAnswerSubmit) {
 		codeAnswerSubmitService.postCodeAnswerSubmit(codeAnswerSubmit);
 	}
-	
 }
