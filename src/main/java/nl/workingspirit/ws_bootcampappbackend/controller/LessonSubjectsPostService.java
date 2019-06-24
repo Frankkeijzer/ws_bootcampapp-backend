@@ -16,6 +16,4 @@ public class LessonSubjectsPostService {
 	public void postLessonSubjects(LessonSubjects lessonSubjects) {
 		lessonSubjectsRepository.save(lessonSubjects);
 	}
-
-
 }

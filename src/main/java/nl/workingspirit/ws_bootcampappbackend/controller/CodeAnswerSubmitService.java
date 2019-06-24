@@ -16,6 +16,5 @@ public class CodeAnswerSubmitService {
 	
 	public void postCodeAnswerSubmit(CodeAnswerSubmit codeAnswerSubmit) {
 		codeAnswerSubmitRepository.save(codeAnswerSubmit);
-		
 	}
 }
