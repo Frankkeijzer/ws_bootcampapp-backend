@@ -25,7 +25,7 @@ public class UserGetService {
 //		if (optionalGebruiker.isPresent()) {
 //		return new ResponseEntity<Gebruiker>(optionalGebruiker.get(),HttpStatus.FOUND);			
 //	} else {
-//		return new ResponseEntity<Gebruiker>(HttpStatus.NOT_FOUND);			
+//		return new ResponseEntity<Gebruiker>(HttpStatus.NOT_FOUND);	
 //	}
 	}
 	

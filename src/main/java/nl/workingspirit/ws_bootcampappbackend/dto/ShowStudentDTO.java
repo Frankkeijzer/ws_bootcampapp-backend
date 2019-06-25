@@ -1,7 +1,5 @@
 package nl.workingspirit.ws_bootcampappbackend.dto;
 
-import java.util.Iterator;
-
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
 
@@ -46,11 +44,5 @@ public class ShowStudentDTO extends DTO {
 
 	public void setEmailaddress(String emailaddress) {
 		this.emailaddress = emailaddress;
-	}
-
-	@Override
-	public Iterator<DTO> iterator() {
-		// TODO Auto-generated method stub
-		return null;
 	}
 }

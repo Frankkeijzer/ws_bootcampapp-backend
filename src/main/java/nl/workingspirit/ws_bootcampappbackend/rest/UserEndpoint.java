@@ -38,13 +38,8 @@ public class UserEndpoint {
 	}
 	
 	@GetMapping("getAllUsers/{role}")
-	public Iterable<DTO> getAllUsersPerRole(@PathVariable Role role){
-		
-		switch(role) {
-			case STUDENT: {
-				return new ShowStudentDTO(userGetService.getAllUsersPerRole(role));
-			}
-		}
+	public Iterable<User> getAllUsersPerRole(@PathVariable Role role){
+		return userGetService.getAllUsersPerRole(role);
 	}
 	
 	@GetMapping("getAllUsers")
@@ -55,6 +50,12 @@ public class UserEndpoint {
 	@PutMapping("UpdateUser")
 	public ResponseEntity<User> updateUser(@RequestBody User user) {
 		return userPutService.updateUser(user);
+	}
+	
+	// TESTMETHODE VOOR TERUGGEVEN VAN ITERABLE DTO 
+	@GetMapping("LaterInvullen/{role}")
+	public Iterable<DTO> getUsersPerRole(@PathVariable Role role){
+		
 	}
 }
 
