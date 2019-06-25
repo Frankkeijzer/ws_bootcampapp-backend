@@ -15,16 +15,18 @@ public class Assignment {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
+	@Column(nullable=false)
 	private String level;
+	@Column(nullable=false)
 	private String day;
+	@Column(nullable=false)
 	private boolean visible;
-	@Column(length = 10000)
+	@Column(length = 10000, nullable=false)
 	private String description;
-	@Column(length = 1000)
+	@Column(length = 1000, nullable=false)
 	private String title;
-	@Column(length = 10000)
+	@Column(length = 10000, nullable=false)
 	private String codeExample;
-
 	@OneToMany
 	private List<CodeAnswerSubmit> codeAnswerSubmit;
 
