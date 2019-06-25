@@ -17,7 +17,7 @@ public class Assignment {
 	private Long id;
 	private String level;
 	private String day;
-	private boolean visible;
+	private Boolean visible;
 	@Column(length = 10000)
 	private String description;
 	@Column(length = 1000)
