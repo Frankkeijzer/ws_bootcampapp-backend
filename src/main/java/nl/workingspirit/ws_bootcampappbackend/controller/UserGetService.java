@@ -36,8 +36,9 @@ public class UserGetService {
 	public Optional<User> getUserByEmailadress(String emailaddress){
 		return userRepository.findByEmailaddress(emailaddress);
 	}
-	
+
 	public Iterable<User> getAllUsers() {
 		return userRepository.findAll();
 	}
+	
 }
