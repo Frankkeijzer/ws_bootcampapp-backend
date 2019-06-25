@@ -13,6 +13,8 @@ import nl.workingspirit.ws_bootcampappbackend.controller.UserPostService;
 import nl.workingspirit.ws_bootcampappbackend.controller.UserPutService;
 import nl.workingspirit.ws_bootcampappbackend.controller.UserGetService;
 import nl.workingspirit.ws_bootcampappbackend.domein.User;
+import nl.workingspirit.ws_bootcampappbackend.dto.DTO;
+import nl.workingspirit.ws_bootcampappbackend.dto.ShowStudentDTO;
 import nl.workingspirit.ws_bootcampappbackend.domein.Role;
 
 @RestController
@@ -26,7 +28,7 @@ public class UserEndpoint {
 	UserPutService userPutService;
 	
 	@PostMapping("addUser")
-	public ResponseEntity<User >postUser(@RequestBody User user) {
+	public ResponseEntity<User>postUser(@RequestBody User user) {
 		return userPostService.postUser(user);
 	}
 	
@@ -36,8 +38,13 @@ public class UserEndpoint {
 	}
 	
 	@GetMapping("getAllUsers/{role}")
-	public Iterable<User> getAllUsersPerRole(@PathVariable Role role){
-		return userGetService.getAllUsersPerRole(role);
+	public Iterable<DTO> getAllUsersPerRole(@PathVariable Role role){
+		
+		switch(role) {
+			case STUDENT: {
+				return new ShowStudentDTO(userGetService.getAllUsersPerRole(role));
+			}
+		}
 	}
 	
 	@GetMapping("getAllUsers")

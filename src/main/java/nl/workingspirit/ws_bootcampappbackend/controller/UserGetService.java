@@ -40,5 +40,4 @@ public class UserGetService {
 	public Iterable<User> getAllUsers() {
 		return userRepository.findAll();
 	}
-	
 }
