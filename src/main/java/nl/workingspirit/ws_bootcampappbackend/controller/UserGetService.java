@@ -1,5 +1,7 @@
 package nl.workingspirit.ws_bootcampappbackend.controller;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Optional;
 
 import javax.transaction.Transactional;
@@ -10,6 +12,7 @@ import org.springframework.stereotype.Service;
 
 import nl.workingspirit.ws_bootcampappbackend.domein.Role;
 import nl.workingspirit.ws_bootcampappbackend.domein.User;
+import nl.workingspirit.ws_bootcampappbackend.dto.UserDTO;
 
 @Service
 @Transactional
@@ -25,10 +28,11 @@ public class UserGetService {
 //		if (optionalGebruiker.isPresent()) {
 //		return new ResponseEntity<Gebruiker>(optionalGebruiker.get(),HttpStatus.FOUND);			
 //	} else {
-//		return new ResponseEntity<Gebruiker>(HttpStatus.NOT_FOUND);			
+//		return new ResponseEntity<Gebruiker>(HttpStatus.NOT_FOUND);	
 //	}
 	}
 	
+	//Wordt niet meer gebruikt
 	public Iterable<User> getAllUsersPerRole(Role role){
 		return userRepository.findByRoleOrderByLastNameAsc(role);
 	}
@@ -41,4 +45,13 @@ public class UserGetService {
 		return userRepository.findAll();
 	}
 	
+	public List<UserDTO> getUsersWithoutPassword(Role role) {
+		List<UserDTO> usersList = new ArrayList<>();
+		
+		for(User user : userRepository.findByRoleOrderByLastNameAsc(role)) {
+			usersList.add(new UserDTO(user));
+		}
+		return usersList;
+	}
 }
+
