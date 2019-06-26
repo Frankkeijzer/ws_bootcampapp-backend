@@ -21,7 +21,7 @@ public class UserGetService {
 	public ResponseEntity<User> getAllUserInformationById(Long id) {
 		Optional<User> optionalUser = userRepository.findById(id);
 		return optionalUser.map(user -> ResponseEntity.ok(user))
-								.orElse(ResponseEntity.notFound().build());
+								.orElse(ResponseEntity.of(optionalUser));
 //		if (optionalGebruiker.isPresent()) {
 //		return new ResponseEntity<Gebruiker>(optionalGebruiker.get(),HttpStatus.FOUND);			
 //	} else {
