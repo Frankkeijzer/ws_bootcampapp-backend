@@ -54,11 +54,24 @@ public class UserEndpoint {
 		return userPutService.updateUser(user);
 	}
 	
-	// TESTMETHODE VOOR TERUGGEVEN VAN ITERABLE DTO 
-	@GetMapping("LaterInvullen/{role}")
-	public Iterable<UserDTO> getUsersPerRole(@PathVariable Role role){
-		Iterable<UserDTO> usersDTO = userGetService.getUsersWithoutPassword(role);
-		return usersDTO;
+	@GetMapping("getAllUsers/{role}/{role2}")
+	public Iterable<UserDTO> getUsersPerRole(@PathVariable Role role, @PathVariable Role role2){
+		Iterable<UserDTO> usersDTO;
+		
+		switch(role2) {
+			case DOCENT: {
+				usersDTO = userGetService.getUsersWithoutPassword(role);
+				return usersDTO;
+			}
+			case MEDEWERKER: {
+				usersDTO = new ArrayList<UserDTO>();
+				return usersDTO;
+			}
+			default: {
+				usersDTO = new ArrayList<UserDTO>();
+				return usersDTO;
+			}
+		}
 	}
 }
 
