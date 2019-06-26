@@ -23,7 +23,7 @@ import nl.workingspirit.ws_bootcampappbackend.domein.User;
 public class AssignmentEndpoint {
 
 	@Autowired
-	AssignmentPostService AssignmentPostService;
+	AssignmentPostService assignmentPostService;
 	@Autowired
 	AssignmentPutService assignmentPutService;
 	@Autowired
@@ -31,8 +31,7 @@ public class AssignmentEndpoint {
 
 	@PostMapping("AddAssignment")
 	public void postAssignment(@RequestBody Assignment assignment) {
-		System.out.println("\n doetie of doetie niet" + assignment.getDay());
-		AssignmentPostService.postAssignment(assignment);
+		assignmentPostService.postAssignment(assignment);
 	}
 
 	@PutMapping("UpdateAssignment")
