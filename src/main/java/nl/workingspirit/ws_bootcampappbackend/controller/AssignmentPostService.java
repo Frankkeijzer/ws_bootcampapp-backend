@@ -14,6 +14,7 @@ public class AssignmentPostService {
 	AssignmentRepository AssignmentRepository;
 	
 	public void postAssignment(Assignment assignment) {
+		System.out.println("\n hier mottie dus gaan saven");
 		AssignmentRepository.save(assignment);
 	}
 }
