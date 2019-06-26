@@ -1,5 +1,8 @@
 package nl.workingspirit.ws_bootcampappbackend.rest;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -13,6 +16,7 @@ import nl.workingspirit.ws_bootcampappbackend.controller.UserPostService;
 import nl.workingspirit.ws_bootcampappbackend.controller.UserPutService;
 import nl.workingspirit.ws_bootcampappbackend.controller.UserGetService;
 import nl.workingspirit.ws_bootcampappbackend.domein.User;
+import nl.workingspirit.ws_bootcampappbackend.dto.UserDTO;
 import nl.workingspirit.ws_bootcampappbackend.domein.Role;
 
 @RestController
@@ -26,7 +30,7 @@ public class UserEndpoint {
 	UserPutService userPutService;
 	
 	@PostMapping("addUser")
-	public ResponseEntity<User >postUser(@RequestBody User user) {
+	public ResponseEntity<User>postUser(@RequestBody User user) {
 		return userPostService.postUser(user);
 	}
 	
@@ -48,6 +52,13 @@ public class UserEndpoint {
 	@PutMapping("UpdateUser")
 	public ResponseEntity<User> updateUser(@RequestBody User user) {
 		return userPutService.updateUser(user);
+	}
+	
+	// TESTMETHODE VOOR TERUGGEVEN VAN ITERABLE DTO 
+	@GetMapping("LaterInvullen/{role}")
+	public Iterable<UserDTO> getUsersPerRole(@PathVariable Role role){
+		Iterable<UserDTO> usersDTO = userGetService.getUsersWithoutPassword(role);
+		return usersDTO;
 	}
 }
 
