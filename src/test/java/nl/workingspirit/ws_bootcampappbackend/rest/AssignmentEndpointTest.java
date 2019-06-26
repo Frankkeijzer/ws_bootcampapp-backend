@@ -9,7 +9,6 @@ import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.Mockito;
 import org.mockito.junit.MockitoJUnitRunner;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 
@@ -18,8 +17,6 @@ import nl.workingspirit.ws_bootcampappbackend.domein.Assignment;
 
 @RunWith(MockitoJUnitRunner.class)
 public class AssignmentEndpointTest {
-//	@Autowired
-//	AssignmentPutService assignmentPutService;
 	
 	@Mock
 	AssignmentPutService assignmentPutService;
