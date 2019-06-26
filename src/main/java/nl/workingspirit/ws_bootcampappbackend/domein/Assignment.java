@@ -12,6 +12,7 @@ import javax.persistence.OneToMany;
 
 @Entity
 public class Assignment {
+	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
@@ -27,6 +28,13 @@ public class Assignment {
 
 	@OneToMany
 	private List<CodeAnswerSubmit> codeAnswerSubmit;
+	
+	public Assignment() {	
+	}
+	
+	public Assignment(Long id){
+		this.id = id;
+	}
 
 	public Long getId() {
 		return id;
