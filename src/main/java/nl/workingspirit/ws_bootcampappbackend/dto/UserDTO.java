@@ -6,7 +6,7 @@ import javax.persistence.Enumerated;
 import nl.workingspirit.ws_bootcampappbackend.domein.Role;
 import nl.workingspirit.ws_bootcampappbackend.domein.User;
 
-public class ShowStudentDTO extends DTO {
+public class UserDTO {
 	
 	private String firstName;
 	private String lastName;
@@ -14,8 +14,8 @@ public class ShowStudentDTO extends DTO {
 	
 	@Enumerated(EnumType.STRING)
 	private Role role;
-	
-	public ShowStudentDTO(User user) {
+
+	public UserDTO(User user) {
 		this.firstName = user.getFirstName();
 		this.lastName = user.getLastName();
 		this.emailaddress = user.getEmailaddress();
@@ -44,5 +44,13 @@ public class ShowStudentDTO extends DTO {
 
 	public void setEmailaddress(String emailaddress) {
 		this.emailaddress = emailaddress;
+	}
+	
+	public Role getRole() {
+		return role;
+	}
+
+	public void setRole(Role role) {
+		this.role = role;
 	}
 }
