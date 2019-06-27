@@ -42,8 +42,12 @@ public class AssignmentEndpoint {
 
 	@GetMapping("GetVisibleAssignments")
 	public ResponseEntity<List<Assignment>> getVisibleAssignmentsStudentsPage() {
-		List<Assignment> assignmentTemp = assignmentRequestService.requestAllVisibleAssignments();
-		return ResponseEntity.ok(assignmentTemp);
+		return ResponseEntity.ok(assignmentRequestService.requestAllVisibleAssignments());
+	}
+	
+	@GetMapping("GetAllAssignments")
+	public ResponseEntity<List<Assignment>> getAllAssignmentsDocent() {
+		return ResponseEntity.ok(assignmentRequestService.requestAllAssignments());
 	}
 
 }

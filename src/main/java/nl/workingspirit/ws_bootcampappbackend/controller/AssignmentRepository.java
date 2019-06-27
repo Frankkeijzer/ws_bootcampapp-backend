@@ -8,6 +8,7 @@ import nl.workingspirit.ws_bootcampappbackend.domein.Assignment;
 
 public interface AssignmentRepository extends CrudRepository<Assignment,Long>{
 	List<Assignment> findAllByVisible(boolean visible);
+	List<Assignment> findAll();
 
 
 }
