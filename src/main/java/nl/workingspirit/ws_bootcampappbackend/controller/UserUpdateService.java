@@ -14,7 +14,7 @@ import nl.workingspirit.ws_bootcampappbackend.domein.User;
 
 @Service
 @Transactional
-public class UserPutService {
+public class UserUpdateService {
 	
 	@Autowired
 	UserGetService userGetService;
@@ -25,8 +25,14 @@ public class UserPutService {
 	@Autowired
 	UserRepository userRepository;
 	
-	public Optional<User> updateUser(@RequestBody User user) {
+	public boolean updateUser(User user) {
 		Optional<User> tempUser = userRepository.findById(user.getId());
-		return tempUser;
+		if(tempUser.isPresent()) {
+			userPostService.updateUser(user);
+			return true;
+		} else {
+			return false;
+		}
+		
 	}
 }

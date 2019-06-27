@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -13,7 +14,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import nl.workingspirit.ws_bootcampappbackend.controller.UserPostService;
-import nl.workingspirit.ws_bootcampappbackend.controller.UserPutService;
+import nl.workingspirit.ws_bootcampappbackend.controller.UserUpdateService;
 import nl.workingspirit.ws_bootcampappbackend.controller.UserGetService;
 import nl.workingspirit.ws_bootcampappbackend.domein.User;
 import nl.workingspirit.ws_bootcampappbackend.dto.UserWithoutEmailDTO;
@@ -27,7 +28,7 @@ public class UserEndpoint {
 	@Autowired 
 	UserPostService userPostService;
 	@Autowired
-	UserPutService userPutService;
+	UserUpdateService userUpdateService;
 	
 	@PostMapping("addUser")
 	public ResponseEntity<User>postUser(@RequestBody User user) {
@@ -52,9 +53,13 @@ public class UserEndpoint {
 	}
 	
 	@PutMapping("UpdateUser")
-	public ResponseEntity<User> updateUser(@RequestBody User userInput) {
-		Optional<User> optionalUser = userPutService.updateUser(userInput);
-		return optionalUser.map(returnUser -> ResponseEntity.ok(returnUser)).orElse(ResponseEntity.of(optionalUser));
+	public ResponseEntity<User> updateUser(@RequestBody User userInput, Long id) {
+		boolean updateAccepted = userUpdateService.updateUser(userInput);
+		if (updateAccepted) { 
+			return new ResponseEntity<User>(HttpStatus.ACCEPTED);
+		} else {
+			return new ResponseEntity<User>(HttpStatus.BAD_REQUEST);
+		}
 	}
 	
 	@GetMapping("getAllStudentsForDocent")
