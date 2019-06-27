@@ -28,7 +28,8 @@ public class ImportTestdata {
             // create 14 random users
             for (int i = 0; i < NUMBEROFUSERS; i++) {
                 Name person = faker.name();
-                userRepository.save(createUser(person.lastName(), faker.bothify("????##@gmail.com"), Role.STUDENT, person.firstName(), WACHTWOORD));
+                int n = i % Role.values().length;
+                userRepository.save(createUser(person.lastName(), faker.bothify("????##@gmail.com"), Role.values()[n], person.firstName(), WACHTWOORD));
             }
         };
     }
