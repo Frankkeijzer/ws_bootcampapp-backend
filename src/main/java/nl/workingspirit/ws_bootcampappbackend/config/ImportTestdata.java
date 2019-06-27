@@ -53,7 +53,7 @@ public class ImportTestdata {
 
         // LOGGER.error("Dit ging vaut");
 
-        LOGGER.debug("Leaving ImportTEstData::createUser");
+        LOGGER.debug("Leaving ImportTestdata::createUser");
 
         return gebruiker;
     }
