@@ -55,10 +55,8 @@ public class UserEndpoint {
 	}
 	
 	@GetMapping("getAllStudentsForDocent")
-	public List<UserWithoutEmailDTO> getUsersPerRole(){
-		List<UserWithoutEmailDTO> usersDTO;
-		
-		usersDTO = userGetService.getUsersWithoutEmailAndPassword(Role.STUDENT);
+	public List<UserWithoutEmailDTO> getStudentsWithoutEmailAndPassword(){
+		List<UserWithoutEmailDTO> usersDTO = userGetService.getUsersWithoutEmailAndPassword(Role.STUDENT);
 		return usersDTO;
 	}
 }
