@@ -1,6 +1,5 @@
 package nl.workingspirit.ws_bootcampappbackend.rest;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -64,4 +63,3 @@ public class UserEndpoint {
 		return ResponseEntity.ok(usersDTO);
 	}
 }
-

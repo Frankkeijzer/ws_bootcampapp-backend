@@ -25,11 +25,11 @@ public class AssignmentEndpointTest {
 //	private Assignment assignment;
 		
 	@Test
-	public Assignment newAssignment() {
+	public void newAssignment() {
 		Assignment assignment = new Assignment();
 //		assignment.
 		
-		return assignment;
+//		return assignment;
 	}
 	
 	public void testAssignmentEndpointTest() {
