@@ -12,5 +12,5 @@ public interface UserRepository extends CrudRepository<User,Long>{
 	Optional<User> findByPassword(String password);
 	List<User> findByRoleOrderByLastNameAsc(Role role);
 	List<User> findAll();
-
+	
 }
