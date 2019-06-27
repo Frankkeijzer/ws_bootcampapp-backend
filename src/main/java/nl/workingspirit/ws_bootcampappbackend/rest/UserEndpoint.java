@@ -1,6 +1,7 @@
 package nl.workingspirit.ws_bootcampappbackend.rest;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -35,27 +36,30 @@ public class UserEndpoint {
 	
 	@GetMapping("giveAllUserInformation/{id}")
 	public ResponseEntity<User> getAllUserInformationById(@PathVariable Long id) {
-		return userGetService.getAllUserInformationById(id);
+		Optional<User> optionalUser = userGetService.getAllUserInformationById(id);
+		return optionalUser.map(user -> ResponseEntity.ok(user))
+		.orElse(ResponseEntity.of(optionalUser));
 	}
 	
 	@GetMapping("getAllUsers/{role}")
-	public Iterable<User> getAllUsersPerRole(@PathVariable Role role){
-		return userGetService.getAllUsersPerRole(role);
+	public ResponseEntity<List<User>> getAllUsersPerRole(@PathVariable Role role){
+		return ResponseEntity.ok(userGetService.getAllUsersPerRole(role));
 	}
 	
 	@GetMapping("getAllUsers")
-	public Iterable<User> getAllUsers() {
-		return userGetService.getAllUsers();
+	public ResponseEntity<List<User>> getAllUsers() {
+		return ResponseEntity.ok(userGetService.getAllUsers());
 	}
 	
 	@PutMapping("UpdateUser")
-	public ResponseEntity<User> updateUser(@RequestBody User user) {
-		return userPutService.updateUser(user);
+	public ResponseEntity<User> updateUser(@RequestBody User userInput) {
+		Optional<User> optionalUser = userPutService.updateUser(userInput);
+		return optionalUser.map(returnUser -> ResponseEntity.ok(returnUser)).orElse(ResponseEntity.of(optionalUser));
 	}
 	
 	@GetMapping("getAllStudentsForDocent")
-	public List<UserWithoutEmailDTO> getStudentsWithoutEmailAndPassword(){
+	public ResponseEntity<List<UserWithoutEmailDTO>> getStudentsWithoutEmailAndPassword(){
 		List<UserWithoutEmailDTO> usersDTO = userGetService.getUsersWithoutEmailAndPassword(Role.STUDENT);
-		return usersDTO;
+		return ResponseEntity.ok(usersDTO);
 	}
 }
