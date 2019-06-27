@@ -1,5 +1,6 @@
 package nl.workingspirit.ws_bootcampappbackend.rest;
 
+import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -40,8 +41,8 @@ public class AssignmentEndpoint {
 	}
 
 	@GetMapping("GetVisibleAssignments")
-	public ResponseEntity<Iterable<Assignment>> getVisibleAssignmentsStudentsPage() {
-		Iterable<Assignment> assignmentTemp = assignmentRequestService.requestAllVisibleAssignments();
+	public ResponseEntity<List<Assignment>> getVisibleAssignmentsStudentsPage() {
+		List<Assignment> assignmentTemp = assignmentRequestService.requestAllVisibleAssignments();
 		return ResponseEntity.ok(assignmentTemp);
 	}
 
