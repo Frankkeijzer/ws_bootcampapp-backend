@@ -1,5 +1,6 @@
 package nl.workingspirit.ws_bootcampappbackend.controller;
 
+import java.util.List;
 import java.util.Optional;
 
 import javax.transaction.Transactional;
@@ -20,9 +21,9 @@ public class AssignmentRequestService {
 	private AssignmentRepository assignmentRepository;
 	
 	
-	public Iterable<Assignment> requestAllVisibleAssignments () {
-		Iterable<Assignment> assignmentIterable = assignmentRepository.findAllByVisible(true);
-		return assignmentIterable;
+	public List<Assignment> requestAllVisibleAssignments () {
+		List<Assignment> assignmentList = assignmentRepository.findAllByVisible(true);
+		return assignmentList;
 		 
 	}
 
