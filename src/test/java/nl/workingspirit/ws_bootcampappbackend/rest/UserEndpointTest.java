@@ -1,8 +1,7 @@
 package nl.workingspirit.ws_bootcampappbackend.rest;
 
 import java.util.Collections;
-import java.util.Iterator;
-import java.util.Objects;
+import java.util.List;
 
 import org.junit.After;
 import org.junit.Assert;
@@ -13,7 +12,6 @@ import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.Mockito;
 import org.mockito.junit.MockitoJUnitRunner;
-import org.springframework.beans.factory.annotation.Autowired;
 
 import nl.workingspirit.ws_bootcampappbackend.controller.UserGetService;
 import nl.workingspirit.ws_bootcampappbackend.domein.Role;
@@ -21,7 +19,7 @@ import nl.workingspirit.ws_bootcampappbackend.domein.User;
 import nl.workingspirit.ws_bootcampappbackend.dto.UserWithoutEmailDTO;
 
 @RunWith(MockitoJUnitRunner.class)
-public class GetAllStudentsDTOEndpointTest {
+public class UserEndpointTest {
 	
 	@InjectMocks
 	UserEndpoint userEndpoint;
@@ -47,22 +45,19 @@ public class GetAllStudentsDTOEndpointTest {
 	}
 	
 	@Test
-	public void testGetUserPerRoleForDocent() {
+	public void testGetAllStudentsForDocent() {
 		Role role = Role.STUDENT;
-		Role role2 = Role.DOCENT;
 		
 		Mockito.when(userGetService.getUsersWithoutEmailAndPassword(Mockito.eq(role))).thenReturn(Collections.singletonList(userDTO));
 		
-		Iterable<UserWithoutEmailDTO> result = userEndpoint.getUsersPerRole(role, role2);
+		List<UserWithoutEmailDTO> result = userEndpoint.getStudentsWithoutEmailAndPassword();
 		
-		Iterator<UserWithoutEmailDTO> iterator = result.iterator();
+		Assert.assertTrue(result.size() == 1);
 		
-		Assert.assertTrue(iterator.hasNext());
-		
-		UserWithoutEmailDTO opgehaaldeGebruiker = iterator.next();
+		UserWithoutEmailDTO opgehaaldeGebruiker = result.get(0);
 		
 		Assert.assertEquals(user.getFirstName(), opgehaaldeGebruiker.getFirstName());
 		Assert.assertEquals(user.getLastName(), opgehaaldeGebruiker.getLastName());
-		Assert.assertFalse(iterator.hasNext());
 	}
 }
+
