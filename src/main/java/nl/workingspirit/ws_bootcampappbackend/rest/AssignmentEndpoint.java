@@ -14,7 +14,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import nl.workingspirit.ws_bootcampappbackend.controller.AssignmentPostService;
-import nl.workingspirit.ws_bootcampappbackend.controller.AssignmentPutService;
+import nl.workingspirit.ws_bootcampappbackend.controller.AssignmentUpdateService;
 import nl.workingspirit.ws_bootcampappbackend.controller.AssignmentRequestService;
 import nl.workingspirit.ws_bootcampappbackend.domein.Assignment;
 import nl.workingspirit.ws_bootcampappbackend.domein.Role;
@@ -26,7 +26,7 @@ public class AssignmentEndpoint {
 	@Autowired
 	AssignmentPostService assignmentPostService;
 	@Autowired
-	AssignmentPutService assignmentPutService;
+	AssignmentUpdateService assignmentUpdateService;
 	@Autowired
 	AssignmentRequestService assignmentRequestService;
 
@@ -37,13 +37,17 @@ public class AssignmentEndpoint {
 
 	@PutMapping("UpdateAssignment")
 	public ResponseEntity<Assignment> updateAssignment(@RequestBody Assignment assignment) {
-		return assignmentPutService.updateAssignment(assignment);
+		return assignmentUpdateService.updateAssignment(assignment);
 	}
 
 	@GetMapping("GetVisibleAssignments")
 	public ResponseEntity<List<Assignment>> getVisibleAssignmentsStudentsPage() {
-		List<Assignment> assignmentTemp = assignmentRequestService.requestAllVisibleAssignments();
-		return ResponseEntity.ok(assignmentTemp);
+		return ResponseEntity.ok(assignmentRequestService.requestAllVisibleAssignments());
+	}
+	
+	@GetMapping("GetAllAssignments")
+	public ResponseEntity<List<Assignment>> getAllAssignmentsDocent() {
+		return ResponseEntity.ok(assignmentRequestService.requestAllAssignments());
 	}
 
 }

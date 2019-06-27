@@ -12,32 +12,30 @@ import org.mockito.junit.MockitoJUnitRunner;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 
-import nl.workingspirit.ws_bootcampappbackend.controller.AssignmentPutService;
+import nl.workingspirit.ws_bootcampappbackend.controller.AssignmentUpdateService;
 import nl.workingspirit.ws_bootcampappbackend.domein.Assignment;
 
 @RunWith(MockitoJUnitRunner.class)
 public class AssignmentEndpointTest {
+//	@Autowired
+//	AssignmentUpdateService assignmentUpdateService;
 	
 	@Mock
-	AssignmentPutService assignmentPutService;
+	AssignmentUpdateService assignmentUpdateService;
 	
 //	@InjectMocks
 //	private Assignment assignment;
 		
 	@Test
-	public Assignment newAssignment() {
+	public void newAssignment() {
 		Assignment assignment = new Assignment();
-		assignment.setLevel("1");
-		assignment.setDay("2");
-		assignment.setVisible(true);
-		assignment.setDescription("Testdescription");
-		assignment.setTitle("TestTitle");
-		assignment.setCodeExample("TestExample");
-		return assignment;
+//		assignment.
+		
+//		return assignment;
 	}
 	
 	public void testAssignmentEndpointTest() {
-		
-		Assert.assertEquals(new ResponseEntity<Assignment>(HttpStatus.OK), assignmentPutService.updateAssignment(newAssignment()));
+//	System.out.println(assignment.getDescription());
+//	Assert.assertEquals(assignment, assignmentUpdateService.updateAssignment(assignment));
 	}
 }

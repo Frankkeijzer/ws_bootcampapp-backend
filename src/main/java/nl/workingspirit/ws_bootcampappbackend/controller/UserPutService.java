@@ -25,14 +25,8 @@ public class UserPutService {
 	@Autowired
 	UserRepository userRepository;
 	
-	public ResponseEntity<User> updateUser(@RequestBody User user) {
+	public Optional<User> updateUser(@RequestBody User user) {
 		Optional<User> tempUser = userRepository.findById(user.getId());
-		if(tempUser.isPresent()) {
-			userPostService.updateUser(user);
-			return new ResponseEntity<User>(HttpStatus.OK);
-		}
-		else {
-			return new ResponseEntity<User>(HttpStatus.BAD_REQUEST);
-		}
+		return tempUser;
 	}
 }

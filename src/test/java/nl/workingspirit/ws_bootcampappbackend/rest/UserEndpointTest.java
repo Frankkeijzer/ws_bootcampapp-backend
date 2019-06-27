@@ -12,6 +12,7 @@ import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.Mockito;
 import org.mockito.junit.MockitoJUnitRunner;
+import org.springframework.http.ResponseEntity;
 
 import nl.workingspirit.ws_bootcampappbackend.controller.UserGetService;
 import nl.workingspirit.ws_bootcampappbackend.domein.Role;
@@ -45,19 +46,19 @@ public class UserEndpointTest {
 	}
 	
 	@Test
-	public void testGetAllStudentsForDocent() {
+	public void testGetAllStudentsForDocentTest() {
 		Role role = Role.STUDENT;
 		
 		Mockito.when(userGetService.getUsersWithoutEmailAndPassword(Mockito.eq(role))).thenReturn(Collections.singletonList(userDTO));
 		
-		List<UserWithoutEmailDTO> result = userEndpoint.getStudentsWithoutEmailAndPassword();
+		ResponseEntity<List<UserWithoutEmailDTO>> result = userEndpoint.getStudentsWithoutEmailAndPassword();
 		
-		Assert.assertTrue(result.size() == 1);
+		Assert.assertTrue(result.getBody().size() == 1);
 		
-		UserWithoutEmailDTO opgehaaldeGebruiker = result.get(0);
+		UserWithoutEmailDTO requestedUser = result.getBody().get(0);
 		
-		Assert.assertEquals(user.getFirstName(), opgehaaldeGebruiker.getFirstName());
-		Assert.assertEquals(user.getLastName(), opgehaaldeGebruiker.getLastName());
+		Assert.assertEquals(user.getFirstName(), requestedUser.getFirstName());
+		Assert.assertEquals(user.getLastName(), requestedUser.getLastName());
 	}
 }
 
