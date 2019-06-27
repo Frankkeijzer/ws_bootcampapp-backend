@@ -16,7 +16,7 @@ import nl.workingspirit.ws_bootcampappbackend.controller.UserPostService;
 import nl.workingspirit.ws_bootcampappbackend.controller.UserPutService;
 import nl.workingspirit.ws_bootcampappbackend.controller.UserGetService;
 import nl.workingspirit.ws_bootcampappbackend.domein.User;
-import nl.workingspirit.ws_bootcampappbackend.dto.UserDTO;
+import nl.workingspirit.ws_bootcampappbackend.dto.UserWithoutEmailDTO;
 import nl.workingspirit.ws_bootcampappbackend.domein.Role;
 
 @RestController
@@ -54,24 +54,12 @@ public class UserEndpoint {
 		return userPutService.updateUser(user);
 	}
 	
-	@GetMapping("getAllUsers/{role}/{role2}")
-	public Iterable<UserDTO> getUsersPerRole(@PathVariable Role role, @PathVariable Role role2){
-		Iterable<UserDTO> usersDTO;
+	@GetMapping("getAllStudentsForDocent")
+	public List<UserWithoutEmailDTO> getUsersPerRole(){
+		List<UserWithoutEmailDTO> usersDTO;
 		
-		switch(role2) {
-			case DOCENT: {
-				usersDTO = userGetService.getUsersWithoutPassword(role);
-				return usersDTO;
-			}
-			case MEDEWERKER: {
-				usersDTO = new ArrayList<UserDTO>();
-				return usersDTO;
-			}
-			default: {
-				usersDTO = new ArrayList<UserDTO>();
-				return usersDTO;
-			}
-		}
+		usersDTO = userGetService.getUsersWithoutEmailAndPassword(Role.STUDENT);
+		return usersDTO;
 	}
 }
 
