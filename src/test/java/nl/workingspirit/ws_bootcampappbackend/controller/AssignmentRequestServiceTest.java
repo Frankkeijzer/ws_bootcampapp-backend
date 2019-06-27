@@ -24,7 +24,9 @@ import nl.workingspirit.ws_bootcampappbackend.domein.Assignment;
 
 @RunWith(MockitoJUnitRunner.class)
 public class AssignmentRequestServiceTest {
+	List<Assignment> testList;
 	Assignment assignment;
+	
 	
     @Mock
     private AssignmentRepository assignmentRepository;
@@ -35,7 +37,9 @@ public class AssignmentRequestServiceTest {
     @Before
     public void setUp() {
     	assignment = new Assignment();
-    	assignment.setVisible(true);  
+    	assignment.setVisible(true);
+    	testList = new ArrayList<Assignment>();
+    	testList.add(assignment);
     	
     }
     
@@ -43,10 +47,8 @@ public class AssignmentRequestServiceTest {
     public void requestAllVisibleAssignmentsTest() {
     	
     	//given / arrange
-    	Assignment testAssignment = assignment;
-    	List<Assignment> testList = new ArrayList<Assignment>();
-    	testList.add(testAssignment);
-    	when(assignmentRepository.findAllByVisible(true)).thenReturn(testList);
+    	List<Assignment> expectedList = testList;
+    	when(assignmentRepository.findAllByVisible(true)).thenReturn(expectedList);
     	
     	// when / act
     	List<Assignment> resultList = sut.requestAllVisibleAssignments();
@@ -54,5 +56,16 @@ public class AssignmentRequestServiceTest {
     	// then / assert
     	Mockito.verify(assignmentRepository).findAllByVisible(true);  	
     	Assert.assertTrue(resultList.contains(assignment));	
+    }
+    
+    @Test
+    public void requestAllAssignmentsTest() {
+    	List<Assignment> expectedList = testList;
+    	when(assignmentRepository.findAll()).thenReturn(expectedList);
+    	
+    	List<Assignment> resultList = sut.requestAllAssignments();
+    	
+    	Mockito.verify(assignmentRepository).findAll();
+    	Assert.assertTrue(resultList.contains(assignment));
     }
 }
