@@ -12,7 +12,7 @@ import org.springframework.stereotype.Service;
 
 import nl.workingspirit.ws_bootcampappbackend.domein.Role;
 import nl.workingspirit.ws_bootcampappbackend.domein.User;
-import nl.workingspirit.ws_bootcampappbackend.dto.UserDTO;
+import nl.workingspirit.ws_bootcampappbackend.dto.UserWithoutEmailDTO;
 
 @Service
 @Transactional
@@ -45,13 +45,21 @@ public class UserGetService {
 		return userRepository.findAll();
 	}
 	
-	public List<UserDTO> getUsersWithoutPassword(Role role) {
-		List<UserDTO> usersList = new ArrayList<>();
+	public List<UserWithoutEmailDTO> getUsersWithoutEmailAndPassword(Role role) {
+		List<UserWithoutEmailDTO> usersList = new ArrayList<>();
 		
 		for(User user : userRepository.findByRoleOrderByLastNameAsc(role)) {
-			usersList.add(new UserDTO(user));
+			usersList.add(new UserWithoutEmailDTO(user));
+		}
+		return usersList;
+	}
+	
+	public List<UserWithoutEmailDTO> getUsersWithoutPassword(Role role) {
+		List<UserWithoutEmailDTO> usersList = new ArrayList<>();
+		
+		for(User user : userRepository.findByRoleOrderByLastNameAsc(role)) {
+			usersList.add(new UserWithoutEmailDTO(user));
 		}
 		return usersList;
 	}
 }
-

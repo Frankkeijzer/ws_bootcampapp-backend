@@ -1,20 +1,15 @@
 package nl.workingspirit.ws_bootcampappbackend.dto;
 
-import javax.persistence.EnumType;
-import javax.persistence.Enumerated;
-
 import nl.workingspirit.ws_bootcampappbackend.domein.Role;
 import nl.workingspirit.ws_bootcampappbackend.domein.User;
 
-public class UserDTO {
+public class UserWithoutEmailDTO {
 	
 	private String firstName;
 	private String lastName;
-	
-	@Enumerated(EnumType.STRING)
 	private Role role;
 
-	public UserDTO(User user) {
+	public UserWithoutEmailDTO(User user) {
 		this.firstName = user.getFirstName();
 		this.lastName = user.getLastName();
 		this.role = user.getRole();
