@@ -10,16 +10,16 @@ import org.mockito.junit.MockitoJUnitRunner;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 
-import nl.workingspirit.ws_bootcampappbackend.controller.AssignmentPutService;
+import nl.workingspirit.ws_bootcampappbackend.controller.AssignmentUpdateService;
 import nl.workingspirit.ws_bootcampappbackend.domein.Assignment;
 
 @RunWith(MockitoJUnitRunner.class)
 public class AssignmentEndpointTest {
 //	@Autowired
-//	AssignmentPutService assignmentPutService;
+//	AssignmentUpdateService assignmentUpdateService;
 	
 	@Mock
-	AssignmentPutService assignmentPutService;
+	AssignmentUpdateService assignmentUpdateService;
 	
 //	@InjectMocks
 //	private Assignment assignment;
@@ -34,6 +34,6 @@ public class AssignmentEndpointTest {
 	
 	public void testAssignmentEndpointTest() {
 //	System.out.println(assignment.getDescription());
-//	Assert.assertEquals(assignment, assignmentPutService.updateAssignment(assignment));
+//	Assert.assertEquals(assignment, assignmentUpdateService.updateAssignment(assignment));
 	}
 }

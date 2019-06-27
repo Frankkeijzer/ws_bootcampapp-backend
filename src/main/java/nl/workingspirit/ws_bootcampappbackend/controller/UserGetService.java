@@ -21,10 +21,9 @@ public class UserGetService {
 	@Autowired
 	UserRepository userRepository;
 	
-	public ResponseEntity<User> getAllUserInformationById(Long id) {
+	public Optional<User> getAllUserInformationById(Long id) {
 		Optional<User> optionalUser = userRepository.findById(id);
-		return optionalUser.map(user -> ResponseEntity.ok(user))
-								.orElse(ResponseEntity.of(optionalUser));
+		return optionalUser;
 //		if (optionalGebruiker.isPresent()) {
 //		return new ResponseEntity<Gebruiker>(optionalGebruiker.get(),HttpStatus.FOUND);			
 //	} else {
@@ -33,7 +32,7 @@ public class UserGetService {
 	}
 	
 	//Wordt niet meer gebruikt
-	public Iterable<User> getAllUsersPerRole(Role role){
+	public List<User> getAllUsersPerRole(Role role){
 		return userRepository.findByRoleOrderByLastNameAsc(role);
 	}
 	
@@ -41,7 +40,7 @@ public class UserGetService {
 		return userRepository.findByEmailaddress(emailaddress);
 	}
 
-	public Iterable<User> getAllUsers() {
+	public List<User> getAllUsers() {
 		return userRepository.findAll();
 	}
 	

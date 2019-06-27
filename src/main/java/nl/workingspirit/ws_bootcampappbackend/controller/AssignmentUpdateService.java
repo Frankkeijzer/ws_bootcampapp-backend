@@ -13,7 +13,7 @@ import nl.workingspirit.ws_bootcampappbackend.domein.Assignment;
 
 @Service
 @Transactional
-public class AssignmentPutService {
+public class AssignmentUpdateService {
 	
 	@Autowired
 	AssignmentRepository assignmentRepository;
