@@ -16,35 +16,30 @@ import nl.workingspirit.ws_bootcampappbackend.dto.UserWithoutEmailDTO;
 
 @Service
 @Transactional
-public class UserGetService {
+public class UserRequestService {
 	
 	@Autowired
 	UserRepository userRepository;
 	
-	public Optional<User> getAllUserInformationById(Long id) {
+	public Optional<User> requestAllUserInformationById(Long id) {
 		Optional<User> optionalUser = userRepository.findById(id);
 		return optionalUser;
-//		if (optionalGebruiker.isPresent()) {
-//		return new ResponseEntity<Gebruiker>(optionalGebruiker.get(),HttpStatus.FOUND);			
-//	} else {
-//		return new ResponseEntity<Gebruiker>(HttpStatus.NOT_FOUND);	
-//	}
 	}
 	
 	//Wordt niet meer gebruikt
-	public List<User> getAllUsersPerRole(Role role){
+	public List<User> requestAllUsersPerRole(Role role){
 		return userRepository.findByRoleOrderByLastNameAsc(role);
 	}
 	
-	public Optional<User> getUserByEmailadress(String emailaddress){
+	public Optional<User> requestUserByEmailadress(String emailaddress){
 		return userRepository.findByEmailaddress(emailaddress);
 	}
 
-	public List<User> getAllUsers() {
+	public List<User> requestAllUsers() {
 		return userRepository.findAll();
 	}
 	
-	public List<UserWithoutEmailDTO> getUsersWithoutEmailAndPassword(Role role) {
+	public List<UserWithoutEmailDTO> requestUsersWithoutEmailAndPassword(Role role) {
 		List<UserWithoutEmailDTO> usersList = new ArrayList<>();
 		
 		for(User user : userRepository.findByRoleOrderByLastNameAsc(role)) {
@@ -53,7 +48,7 @@ public class UserGetService {
 		return usersList;
 	}
 	
-	public List<UserWithoutEmailDTO> getUsersWithoutPassword(Role role) {
+	public List<UserWithoutEmailDTO> requestUsersWithoutPassword(Role role) {
 		List<UserWithoutEmailDTO> usersList = new ArrayList<>();
 		
 		for(User user : userRepository.findByRoleOrderByLastNameAsc(role)) {

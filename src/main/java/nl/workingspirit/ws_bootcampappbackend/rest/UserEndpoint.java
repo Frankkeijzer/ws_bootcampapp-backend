@@ -13,9 +13,9 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
-import nl.workingspirit.ws_bootcampappbackend.controller.UserPostService;
+import nl.workingspirit.ws_bootcampappbackend.controller.UserCreateService;
 import nl.workingspirit.ws_bootcampappbackend.controller.UserUpdateService;
-import nl.workingspirit.ws_bootcampappbackend.controller.UserGetService;
+import nl.workingspirit.ws_bootcampappbackend.controller.UserRequestService;
 import nl.workingspirit.ws_bootcampappbackend.domein.User;
 import nl.workingspirit.ws_bootcampappbackend.dto.UserWithoutEmailDTO;
 import nl.workingspirit.ws_bootcampappbackend.domein.Role;
@@ -24,15 +24,15 @@ import nl.workingspirit.ws_bootcampappbackend.domein.Role;
 public class UserEndpoint {
 	
 	@Autowired
-	UserGetService userGetService;
+	UserRequestService userRequestService;
 	@Autowired 
-	UserPostService userPostService;
+	UserCreateService userCreateService;
 	@Autowired
 	UserUpdateService userUpdateService;
 	
 	@PostMapping("addUser")
 	public ResponseEntity<User>postUser(@RequestBody User user) {
-		boolean succeeded = userPostService.postUser(user);
+		boolean succeeded = userCreateService.createUser(user);
 	if (succeeded) {
 		return new ResponseEntity<User>(HttpStatus.OK);
 	}
@@ -44,19 +44,19 @@ public class UserEndpoint {
 	
 	@GetMapping("giveAllUserInformation/{id}")
 	public ResponseEntity<User> getAllUserInformationById(@PathVariable Long id) {
-		Optional<User> optionalUser = userGetService.getAllUserInformationById(id);
+		Optional<User> optionalUser = userRequestService.requestAllUserInformationById(id);
 		return optionalUser.map(user -> ResponseEntity.ok(user))
 		.orElse(ResponseEntity.of(optionalUser));
 	}
 	
 	@GetMapping("getAllUsers/{role}")
 	public ResponseEntity<List<User>> getAllUsersPerRole(@PathVariable Role role){
-		return ResponseEntity.ok(userGetService.getAllUsersPerRole(role));
+		return ResponseEntity.ok(userRequestService.requestAllUsersPerRole(role));
 	}
 	
 	@GetMapping("getAllUsers")
 	public ResponseEntity<List<User>> getAllUsers() {
-		return ResponseEntity.ok(userGetService.getAllUsers());
+		return ResponseEntity.ok(userRequestService.requestAllUsers());
 	}
 	
 	@PutMapping("UpdateUser/{id}")
@@ -71,7 +71,7 @@ public class UserEndpoint {
 	
 	@GetMapping("getAllStudentsForDocent")
 	public ResponseEntity<List<UserWithoutEmailDTO>> getStudentsWithoutEmailAndPassword(){
-		List<UserWithoutEmailDTO> usersDTO = userGetService.getUsersWithoutEmailAndPassword(Role.STUDENT);
+		List<UserWithoutEmailDTO> usersDTO = userRequestService.requestUsersWithoutEmailAndPassword(Role.STUDENT);
 		return ResponseEntity.ok(usersDTO);
 	}
 }

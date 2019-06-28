@@ -9,11 +9,11 @@ import nl.workingspirit.ws_bootcampappbackend.domein.LessonSubjects;
 
 @Service
 @Transactional
-public class LessonSubjectsPostService {
+public class LessonSubjectsCreateService {
 	@Autowired
 	LessonSubjectsRepository lessonSubjectsRepository;
 	
-	public void postLessonSubjects(LessonSubjects lessonSubjects) {
+	public void createLessonSubjects(LessonSubjects lessonSubjects) {
 		lessonSubjectsRepository.save(lessonSubjects);
 	}
 }
