@@ -18,14 +18,21 @@ public class AssignmentUpdateService {
 	@Autowired
 	AssignmentRepository assignmentRepository;
 	
-	public ResponseEntity<Assignment> updateAssignment(Assignment assignment) {
-		Optional<Assignment> tempAssignment = assignmentRepository.findById(assignment.getId());
+	public Optional<Assignment> updateAssignment(Long id, Assignment assignment) {
+		Optional<Assignment> tempAssignment = assignmentRepository.findById(id);
 		if(tempAssignment.isPresent()) {
-			assignmentRepository.save(assignment);
-			return new ResponseEntity<Assignment>(assignment, HttpStatus.OK);
+			Assignment target = tempAssignment.get();
+			target.setTitle(assignment.getTitle());
+			target.setCodeExample(assignment.getCodeExample());
+			target.setDescription(assignment.getDescription());
+			target.setDay(assignment.getDay());
+			target.setLevel(assignment.getLevel());
+			assignmentRepository.save(target);
+			
+			return Optional.of(target);
 		}
 		else {
-			return new ResponseEntity<Assignment>(HttpStatus.BAD_REQUEST);
+			return Optional.empty();
 		}
 	}
 }

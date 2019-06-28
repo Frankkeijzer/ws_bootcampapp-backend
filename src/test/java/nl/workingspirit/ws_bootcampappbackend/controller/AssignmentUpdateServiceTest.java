@@ -29,6 +29,7 @@ public class AssignmentUpdateServiceTest {
     public void setUp() {
     	assignment = new Assignment(1L);
     	assignment.setTitle("Opdracht 10");
+    	assignment.setLevel("1");   
     	assignment.setVisible(true);
     	
     }
@@ -36,17 +37,27 @@ public class AssignmentUpdateServiceTest {
     @Test
     public void updateAssignmentTest() {
     	//given / arrange
-    	Assignment expectedAssignment = assignment;
-    	when(assignmentRepository.findById(1L)).thenReturn(Optional.of(expectedAssignment));
+    	when(assignmentRepository.findById(1L)).thenReturn(Optional.of(assignment));
     	
     	//when / act
-    	assignment.setTitle("Opdracht 22");
-    	assignment.setVisible(true);
-    	ResponseEntity<Assignment> result = sut.updateAssignment(assignment);
+    	Assignment update = new Assignment(1L);
+    	update.setTitle("Opdracht 22");
+    	update.setCodeExample("Code Example");
+    	update.setDay("2");
+    	update.setDescription("Description");
+    	update.setLevel("1");    	
+    	update.setVisible(true);
+    	Optional<Assignment> result = sut.updateAssignment(1L, update);
     	
     	//then / assert
-    	Assert.assertEquals(expectedAssignment, result.getBody());
-    	Mockito.verify(assignmentRepository).save(Mockito.eq(expectedAssignment));
+    	Assert.assertTrue(result.isPresent());
+    	Assert.assertEquals(assignment, result.get());
+    	Assert.assertEquals(update.getTitle(), result.get().getTitle());
+    	Assert.assertEquals(update.getCodeExample(), result.get().getCodeExample());
+    	Assert.assertEquals(update.getDay(), result.get().getDay());
+    	Assert.assertEquals(update.getDescription(), result.get().getDescription());
+    	Assert.assertEquals(update.getLevel(), result.get().getLevel());
+    	Mockito.verify(assignmentRepository).save(Mockito.eq(update));
     	
     }
     
