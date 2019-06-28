@@ -11,26 +11,23 @@ import nl.workingspirit.ws_bootcampappbackend.domein.User;
 
 @Service
 @Transactional
-public class UserPostService {
+public class UserCreateService {
 
 	@Autowired
-	UserGetService userGetService;
+	UserRequestService userRequestService;
 	
 	@Autowired
 	UserRepository userRepository;
 	
-	public ResponseEntity<User >postUser(User user) {
-		if(!userGetService.getUserByEmailadress(user.getEmailaddress()).isPresent()) { 
+	public boolean createUser(User user) {
+		if(!userRequestService.requestUserByEmailadress(user.getEmailaddress()).isPresent()) { 
 			userRepository.save(user);
-			System.out.println("de gebruiker wordt toegevoegd"); 
-			return new ResponseEntity<User>(HttpStatus.OK);
+			return true;
 		}
 		else {
-			return new ResponseEntity<User>(HttpStatus.BAD_REQUEST);
+			return false;
 		}
 	}
-	
-	public void updateUser(User user) {
-		userRepository.save(user);
-	}
 }
+	
+	

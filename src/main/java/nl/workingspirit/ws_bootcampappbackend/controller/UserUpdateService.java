@@ -17,18 +17,15 @@ import nl.workingspirit.ws_bootcampappbackend.domein.User;
 public class UserUpdateService {
 	
 	@Autowired
-	UserGetService userGetService;
-	
-	@Autowired
-	UserPostService userPostService;
+	UserRequestService userRequestService;
 	
 	@Autowired
 	UserRepository userRepository;
 	
-	public boolean updateUser(User user) {
-		Optional<User> tempUser = userRepository.findById(user.getId());
+	public boolean updateUser(User user, Long id) {
+		Optional<User> tempUser = userRepository.findById(id);
 		if(tempUser.isPresent()) {
-			userPostService.updateUser(user);
+			userRepository.save(user);
 			return true;
 		} else {
 			return false;

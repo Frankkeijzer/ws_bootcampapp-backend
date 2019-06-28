@@ -24,7 +24,7 @@ import java.util.List;
 import java.util.Optional;
 
 @RunWith(MockitoJUnitRunner.class)
-public class GettingServiceTest {
+public class ReqeustServiceTest {
 
     @Rule
     public ExpectedException expectedException = ExpectedException.none();
@@ -33,7 +33,7 @@ public class GettingServiceTest {
     private UserRepository userRepository;
 
     @InjectMocks
-    private UserGetService sut;
+    private UserRequestService sut;
 
     @Before
     public void setUp() {
@@ -58,7 +58,7 @@ public class GettingServiceTest {
     	
     	
     	when(userRepository.findByRoleOrderByLastNameAsc(Role.STUDENT)).thenReturn((List<User>) listStudentenVerwacht);
-    	Iterable<User> iterableStudentenEcht = sut.getAllUsersPerRole(Role.STUDENT);
+    	Iterable<User> iterableStudentenEcht = sut.requestAllUsersPerRole(Role.STUDENT);
     	Assert.assertEquals(listStudentenVerwacht, iterableStudentenEcht);
     	
     }
@@ -77,7 +77,7 @@ public class GettingServiceTest {
     	docentenVerwacht.add(docent);
     	
     	when(userRepository.findByRoleOrderByLastNameAsc(Role.DOCENT)).thenReturn((List<User>) docentenVerwacht);
-    	Iterable<User> docentenEcht = sut.getAllUsersPerRole(Role.DOCENT);
+    	Iterable<User> docentenEcht = sut.requestAllUsersPerRole(Role.DOCENT);
     	Assert.assertEquals(docentenVerwacht, docentenEcht);
     	
     }
@@ -89,7 +89,7 @@ public class GettingServiceTest {
 
         when(userRepository.findByEmailaddress(anyString())).thenReturn(Optional.of(expectedUser));
 
-        Optional<User> user = sut.getUserByEmailadress("test@test.nl");
+        Optional<User> user = sut.requestUserByEmailadress("test@test.nl");
 
         Assert.assertEquals(Optional.of(expectedUser), user);
     }
@@ -105,7 +105,7 @@ public class GettingServiceTest {
     	
     	when(userRepository.findByRoleOrderByLastNameAsc(Mockito.eq(Role.STUDENT))).thenReturn(Collections.singletonList(expectedUser));
     	
-    	List<UserWithoutEmailDTO> studentList = sut.getUsersWithoutEmailAndPassword(Role.STUDENT);
+    	List<UserWithoutEmailDTO> studentList = sut.requestUsersWithoutEmailAndPassword(Role.STUDENT);
     	
     	Assert.assertTrue(studentList.size() == 1);
     	

@@ -9,11 +9,11 @@ import nl.workingspirit.ws_bootcampappbackend.domein.LessonSubjects;
 
 @Service
 @Transactional
-public class LessonSubjectsGetService {
+public class LessonSubjectsRequestService {
 	@Autowired
 	LessonSubjectsRepository lessonSubjectsRepository;
 	
-	public Iterable<LessonSubjects> getAllLessonSubjects(){
+	public Iterable<LessonSubjects> requestAllLessonSubjects(){
 		return lessonSubjectsRepository.findAll();
 	}
 }
