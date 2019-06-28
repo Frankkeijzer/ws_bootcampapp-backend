@@ -19,14 +19,13 @@ public class UserPostService {
 	@Autowired
 	UserRepository userRepository;
 	
-	public ResponseEntity<User >postUser(User user) {
+	public boolean postUser(User user) {
 		if(!userGetService.getUserByEmailadress(user.getEmailaddress()).isPresent()) { 
 			userRepository.save(user);
-			System.out.println("de gebruiker wordt toegevoegd"); 
-			return new ResponseEntity<User>(HttpStatus.OK);
+			return true;
 		}
 		else {
-			return new ResponseEntity<User>(HttpStatus.BAD_REQUEST);
+			return false;
 		}
 	}
 	

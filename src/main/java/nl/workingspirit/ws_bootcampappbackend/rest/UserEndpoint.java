@@ -32,7 +32,14 @@ public class UserEndpoint {
 	
 	@PostMapping("addUser")
 	public ResponseEntity<User>postUser(@RequestBody User user) {
-		return userPostService.postUser(user);
+		boolean succeeded = userPostService.postUser(user);
+	if (succeeded) {
+		return new ResponseEntity<User>(HttpStatus.OK);
+	}
+	else {
+		return new ResponseEntity<User>(HttpStatus.BAD_REQUEST);
+	}
+		
 	}
 	
 	@GetMapping("giveAllUserInformation/{id}")
@@ -52,9 +59,9 @@ public class UserEndpoint {
 		return ResponseEntity.ok(userGetService.getAllUsers());
 	}
 	
-	@PutMapping("UpdateUser")
-	public ResponseEntity<User> updateUser(@RequestBody User userInput, Long id) {
-		boolean updateAccepted = userUpdateService.updateUser(userInput);
+	@PutMapping("UpdateUser/{id}")
+	public ResponseEntity<User> updateUser(@RequestBody User userInput, @PathVariable Long id) {
+		boolean updateAccepted = userUpdateService.updateUser(userInput, id);
 		if (updateAccepted) { 
 			return new ResponseEntity<User>(HttpStatus.ACCEPTED);
 		} else {
