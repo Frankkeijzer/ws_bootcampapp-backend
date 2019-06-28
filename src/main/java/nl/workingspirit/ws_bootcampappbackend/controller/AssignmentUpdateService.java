@@ -18,8 +18,8 @@ public class AssignmentUpdateService {
 	@Autowired
 	AssignmentRepository assignmentRepository;
 	
-	public Optional<Assignment> updateAssignment(Assignment assignment) {
-		Optional<Assignment> tempAssignment = assignmentRepository.findById(assignment.getId());
+	public Optional<Assignment> updateAssignment(Long id, Assignment assignment) {
+		Optional<Assignment> tempAssignment = assignmentRepository.findById(id);
 		if(tempAssignment.isPresent()) {
 			Assignment target = tempAssignment.get();
 			target.setTitle(assignment.getTitle());

@@ -35,9 +35,14 @@ public class AssignmentEndpoint {
 		assignmentPostService.postAssignment(assignment);
 	}
 
-	@PutMapping("UpdateAssignment")
-	public ResponseEntity<Assignment> updateAssignment(@RequestBody Assignment assignment) {
-		return assignmentUpdateService.updateAssignment(assignment);
+	@PutMapping("UpdateAssignment/{id}")
+	public ResponseEntity<Assignment> updateAssignment(@RequestBody Assignment assignment, @PathVariable Long id) {
+		Optional<Assignment> tempAssignment = this.assignmentUpdateService.updateAssignment(id, assignment);
+		if (tempAssignment.isPresent()) {
+		return ResponseEntity.ok(tempAssignment.get());
+		} else {
+		return ResponseEntity.notFound().build();
+		}
 	}
 
 	@GetMapping("GetVisibleAssignments")

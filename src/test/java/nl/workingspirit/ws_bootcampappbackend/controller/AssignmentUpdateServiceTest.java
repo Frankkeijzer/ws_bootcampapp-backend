@@ -47,7 +47,7 @@ public class AssignmentUpdateServiceTest {
     	update.setDescription("Description");
     	update.setLevel("1");    	
     	update.setVisible(true);
-    	Optional<Assignment> result = sut.updateAssignment(update);
+    	Optional<Assignment> result = sut.updateAssignment(1L, update);
     	
     	//then / assert
     	Assert.assertTrue(result.isPresent());
