@@ -12,46 +12,48 @@ import org.springframework.stereotype.Service;
 
 import nl.workingspirit.ws_bootcampappbackend.domein.Role;
 import nl.workingspirit.ws_bootcampappbackend.domein.User;
-import nl.workingspirit.ws_bootcampappbackend.dto.UserDTO;
+import nl.workingspirit.ws_bootcampappbackend.dto.UserWithoutEmailDTO;
 
 @Service
 @Transactional
-public class UserGetService {
+public class UserRequestService {
 	
 	@Autowired
 	UserRepository userRepository;
 	
-	public ResponseEntity<User> getAllUserInformationById(Long id) {
+	public Optional<User> requestAllUserInformationById(Long id) {
 		Optional<User> optionalUser = userRepository.findById(id);
-		return optionalUser.map(user -> ResponseEntity.ok(user))
-								.orElse(ResponseEntity.of(optionalUser));
-//		if (optionalGebruiker.isPresent()) {
-//		return new ResponseEntity<Gebruiker>(optionalGebruiker.get(),HttpStatus.FOUND);			
-//	} else {
-//		return new ResponseEntity<Gebruiker>(HttpStatus.NOT_FOUND);	
-//	}
+		return optionalUser;
 	}
 	
 	//Wordt niet meer gebruikt
-	public Iterable<User> getAllUsersPerRole(Role role){
+	public List<User> requestAllUsersPerRole(Role role){
 		return userRepository.findByRoleOrderByLastNameAsc(role);
 	}
 	
-	public Optional<User> getUserByEmailadress(String emailaddress){
+	public Optional<User> requestUserByEmailadress(String emailaddress){
 		return userRepository.findByEmailaddress(emailaddress);
 	}
 
-	public Iterable<User> getAllUsers() {
+	public List<User> requestAllUsers() {
 		return userRepository.findAll();
 	}
 	
-	public List<UserDTO> getUsersWithoutPassword(Role role) {
-		List<UserDTO> usersList = new ArrayList<>();
+	public List<UserWithoutEmailDTO> requestUsersWithoutEmailAndPassword(Role role) {
+		List<UserWithoutEmailDTO> usersList = new ArrayList<>();
 		
 		for(User user : userRepository.findByRoleOrderByLastNameAsc(role)) {
-			usersList.add(new UserDTO(user));
+			usersList.add(new UserWithoutEmailDTO(user));
+		}
+		return usersList;
+	}
+	
+	public List<UserWithoutEmailDTO> requestUsersWithoutPassword(Role role) {
+		List<UserWithoutEmailDTO> usersList = new ArrayList<>();
+		
+		for(User user : userRepository.findByRoleOrderByLastNameAsc(role)) {
+			usersList.add(new UserWithoutEmailDTO(user));
 		}
 		return usersList;
 	}
 }
-

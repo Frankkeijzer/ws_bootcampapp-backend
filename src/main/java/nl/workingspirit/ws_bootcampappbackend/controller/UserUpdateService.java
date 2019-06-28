@@ -14,25 +14,22 @@ import nl.workingspirit.ws_bootcampappbackend.domein.User;
 
 @Service
 @Transactional
-public class UserPutService {
+public class UserUpdateService {
 	
 	@Autowired
-	UserGetService userGetService;
-	
-	@Autowired
-	UserPostService userPostService;
+	UserRequestService userRequestService;
 	
 	@Autowired
 	UserRepository userRepository;
 	
-	public ResponseEntity<User> updateUser(@RequestBody User user) {
-		Optional<User> tempUser = userRepository.findById(user.getId());
+	public boolean updateUser(User user, Long id) {
+		Optional<User> tempUser = userRepository.findById(id);
 		if(tempUser.isPresent()) {
-			userPostService.updateUser(user);
-			return new ResponseEntity<User>(HttpStatus.OK);
+			userRepository.save(user);
+			return true;
+		} else {
+			return false;
 		}
-		else {
-			return new ResponseEntity<User>(HttpStatus.BAD_REQUEST);
-		}
+		
 	}
 }

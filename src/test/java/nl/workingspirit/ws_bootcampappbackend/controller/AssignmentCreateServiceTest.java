@@ -20,7 +20,7 @@ import static org.mockito.ArgumentMatchers.*;
 import java.util.Optional;
 
 @RunWith(MockitoJUnitRunner.class)
-public class AssignmentPostServiceTest {
+public class AssignmentCreateServiceTest {
 
     @Rule
     public ExpectedException expectedException = ExpectedException.none();

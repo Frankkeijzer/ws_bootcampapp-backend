@@ -1,9 +1,10 @@
 package nl.workingspirit.ws_bootcampappbackend.rest;
 
-import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -12,66 +13,65 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
-import nl.workingspirit.ws_bootcampappbackend.controller.UserPostService;
-import nl.workingspirit.ws_bootcampappbackend.controller.UserPutService;
-import nl.workingspirit.ws_bootcampappbackend.controller.UserGetService;
+import nl.workingspirit.ws_bootcampappbackend.controller.UserCreateService;
+import nl.workingspirit.ws_bootcampappbackend.controller.UserUpdateService;
+import nl.workingspirit.ws_bootcampappbackend.controller.UserRequestService;
 import nl.workingspirit.ws_bootcampappbackend.domein.User;
-import nl.workingspirit.ws_bootcampappbackend.dto.UserDTO;
+import nl.workingspirit.ws_bootcampappbackend.dto.UserWithoutEmailDTO;
 import nl.workingspirit.ws_bootcampappbackend.domein.Role;
 
 @RestController
 public class UserEndpoint {
 	
 	@Autowired
-	UserGetService userGetService;
+	UserRequestService userRequestService;
 	@Autowired 
-	UserPostService userPostService;
+	UserCreateService userCreateService;
 	@Autowired
-	UserPutService userPutService;
+	UserUpdateService userUpdateService;
 	
 	@PostMapping("addUser")
 	public ResponseEntity<User>postUser(@RequestBody User user) {
-		return userPostService.postUser(user);
+		boolean succeeded = userCreateService.createUser(user);
+	if (succeeded) {
+		return new ResponseEntity<User>(HttpStatus.OK);
+	}
+	else {
+		return new ResponseEntity<User>(HttpStatus.BAD_REQUEST);
+	}
+		
 	}
 	
 	@GetMapping("giveAllUserInformation/{id}")
 	public ResponseEntity<User> getAllUserInformationById(@PathVariable Long id) {
-		return userGetService.getAllUserInformationById(id);
+		Optional<User> optionalUser = userRequestService.requestAllUserInformationById(id);
+		return optionalUser.map(user -> ResponseEntity.ok(user))
+		.orElse(ResponseEntity.of(optionalUser));
 	}
 	
 	@GetMapping("getAllUsers/{role}")
-	public Iterable<User> getAllUsersPerRole(@PathVariable Role role){
-		return userGetService.getAllUsersPerRole(role);
+	public ResponseEntity<List<User>> getAllUsersPerRole(@PathVariable Role role){
+		return ResponseEntity.ok(userRequestService.requestAllUsersPerRole(role));
 	}
 	
 	@GetMapping("getAllUsers")
-	public Iterable<User> getAllUsers() {
-		return userGetService.getAllUsers();
+	public ResponseEntity<List<User>> getAllUsers() {
+		return ResponseEntity.ok(userRequestService.requestAllUsers());
 	}
 	
-	@PutMapping("UpdateUser")
-	public ResponseEntity<User> updateUser(@RequestBody User user) {
-		return userPutService.updateUser(user);
-	}
-	
-	@GetMapping("getAllUsers/{role}/{role2}")
-	public Iterable<UserDTO> getUsersPerRole(@PathVariable Role role, @PathVariable Role role2){
-		Iterable<UserDTO> usersDTO;
-		
-		switch(role2) {
-			case DOCENT: {
-				usersDTO = userGetService.getUsersWithoutPassword(role);
-				return usersDTO;
-			}
-			case MEDEWERKER: {
-				usersDTO = new ArrayList<UserDTO>();
-				return usersDTO;
-			}
-			default: {
-				usersDTO = new ArrayList<UserDTO>();
-				return usersDTO;
-			}
+	@PutMapping("UpdateUser/{id}")
+	public ResponseEntity<User> updateUser(@RequestBody User userInput, @PathVariable Long id) {
+		boolean updateAccepted = userUpdateService.updateUser(userInput, id);
+		if (updateAccepted) { 
+			return new ResponseEntity<User>(HttpStatus.ACCEPTED);
+		} else {
+			return new ResponseEntity<User>(HttpStatus.BAD_REQUEST);
 		}
 	}
+	
+	@GetMapping("getAllStudentsForDocent")
+	public ResponseEntity<List<UserWithoutEmailDTO>> getStudentsWithoutEmailAndPassword(){
+		List<UserWithoutEmailDTO> usersDTO = userRequestService.requestUsersWithoutEmailAndPassword(Role.STUDENT);
+		return ResponseEntity.ok(usersDTO);
+	}
 }
-

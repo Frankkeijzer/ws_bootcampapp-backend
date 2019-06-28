@@ -13,7 +13,7 @@ import nl.workingspirit.ws_bootcampappbackend.domein.Assignment;
 
 @Service
 @Transactional
-public class AssignmentPutService {
+public class AssignmentUpdateService {
 	
 	@Autowired
 	AssignmentRepository assignmentRepository;
@@ -22,7 +22,7 @@ public class AssignmentPutService {
 		Optional<Assignment> tempAssignment = assignmentRepository.findById(assignment.getId());
 		if(tempAssignment.isPresent()) {
 			assignmentRepository.save(assignment);
-			return new ResponseEntity<Assignment>(HttpStatus.OK);
+			return new ResponseEntity<Assignment>(assignment, HttpStatus.OK);
 		}
 		else {
 			return new ResponseEntity<Assignment>(HttpStatus.BAD_REQUEST);
