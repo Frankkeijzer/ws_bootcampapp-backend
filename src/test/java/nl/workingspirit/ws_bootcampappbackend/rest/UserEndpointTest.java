@@ -14,7 +14,7 @@ import org.mockito.Mockito;
 import org.mockito.junit.MockitoJUnitRunner;
 import org.springframework.http.ResponseEntity;
 
-import nl.workingspirit.ws_bootcampappbackend.controller.UserGetService;
+import nl.workingspirit.ws_bootcampappbackend.controller.UserRequestService;
 import nl.workingspirit.ws_bootcampappbackend.domein.Role;
 import nl.workingspirit.ws_bootcampappbackend.domein.User;
 import nl.workingspirit.ws_bootcampappbackend.dto.UserWithoutEmailDTO;
@@ -26,7 +26,7 @@ public class UserEndpointTest {
 	UserEndpoint userEndpoint;
 	
 	@Mock
-	UserGetService userGetService;
+	UserRequestService userRequestService;
 	
 	User user = new User();
 	UserWithoutEmailDTO userDTO;
@@ -49,7 +49,7 @@ public class UserEndpointTest {
 	public void testGetAllStudentsForDocentTest() {
 		Role role = Role.STUDENT;
 		
-		Mockito.when(userGetService.getUsersWithoutEmailAndPassword(Mockito.eq(role))).thenReturn(Collections.singletonList(userDTO));
+		Mockito.when(userRequestService.requestUsersWithoutEmailAndPassword(Mockito.eq(role))).thenReturn(Collections.singletonList(userDTO));
 		
 		ResponseEntity<List<UserWithoutEmailDTO>> result = userEndpoint.getStudentsWithoutEmailAndPassword();
 		

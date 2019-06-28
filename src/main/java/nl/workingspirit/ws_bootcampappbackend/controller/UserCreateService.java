@@ -11,16 +11,16 @@ import nl.workingspirit.ws_bootcampappbackend.domein.User;
 
 @Service
 @Transactional
-public class UserPostService {
+public class UserCreateService {
 
 	@Autowired
-	UserGetService userGetService;
+	UserRequestService userRequestService;
 	
 	@Autowired
 	UserRepository userRepository;
 	
-	public boolean postUser(User user) {
-		if(!userGetService.getUserByEmailadress(user.getEmailaddress()).isPresent()) { 
+	public boolean createUser(User user) {
+		if(!userRequestService.requestUserByEmailadress(user.getEmailaddress()).isPresent()) { 
 			userRepository.save(user);
 			return true;
 		}
@@ -28,8 +28,6 @@ public class UserPostService {
 			return false;
 		}
 	}
-	
-	public void updateUser(User user) {
-		userRepository.save(user);
-	}
 }
+	
+	
