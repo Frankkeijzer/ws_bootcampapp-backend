@@ -5,7 +5,6 @@ import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.Mockito;
 import org.mockito.junit.MockitoJUnitRunner;
-import org.springframework.http.ResponseEntity;
 
 import nl.workingspirit.ws_bootcampappbackend.domein.Assignment;
 
@@ -31,7 +30,6 @@ public class AssignmentUpdateServiceTest {
     	assignment.setTitle("Opdracht 10");
     	assignment.setLevel("1");   
     	assignment.setVisible(true);
-    	
     }
     
     @Test
@@ -40,7 +38,7 @@ public class AssignmentUpdateServiceTest {
     	when(assignmentRepository.findById(1L)).thenReturn(Optional.of(assignment));
     	
     	//when / act
-    	Assignment update = new Assignment(1L);
+    	Assignment update = new Assignment();
     	update.setTitle("Opdracht 22");
     	update.setCodeExample("Code Example");
     	update.setDay("2");
@@ -56,9 +54,7 @@ public class AssignmentUpdateServiceTest {
     	Assert.assertEquals(update.getCodeExample(), result.get().getCodeExample());
     	Assert.assertEquals(update.getDay(), result.get().getDay());
     	Assert.assertEquals(update.getDescription(), result.get().getDescription());
-    	Assert.assertEquals(update.getLevel(), result.get().getLevel());
-    	Mockito.verify(assignmentRepository).save(Mockito.eq(update));
-    	
+    	Assert.assertEquals(update.getLevel(), result.get().getLevel());  	
     }
     
 }

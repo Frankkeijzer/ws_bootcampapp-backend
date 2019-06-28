@@ -10,9 +10,7 @@ public class AssignmentTest {
 	Assignment sut = makeNewAssignment();
 //	Assert.assertEquals("testtest", sut.getDescription());
 	}
-	
-	
-	
+		
 	public Assignment makeNewAssignment() {
 	Assignment assignment = new Assignment();
 	assignment.setLevel("3");
@@ -23,5 +21,4 @@ public class AssignmentTest {
 	assignment.setCodeExample("een code example");
 	return assignment;
 	}
-
 }
