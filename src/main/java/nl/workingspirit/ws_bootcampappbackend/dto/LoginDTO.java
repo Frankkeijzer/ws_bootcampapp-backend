@@ -13,6 +13,7 @@ public class LoginDTO {
 	
 	private String firstName;
 	private String lastName;
+	private long userId;
 
 	@Enumerated(EnumType.STRING)
 	private Role role;
@@ -24,6 +25,7 @@ public class LoginDTO {
 		setName(user.getFirstName());
 		setLastName(user.getLastName());
 		setRole(user.getRole());
+		setUserId(user.getId());
 	}
 	
 	public static LoginDTO maakInlogDTO (User user) {
@@ -49,5 +51,13 @@ public class LoginDTO {
 
 	public void setLastName(String lastName) {
 		this.lastName = lastName;
+	}
+
+	public long getUserId() {
+		return userId;
+	}
+
+	public void setUserId(long userId) {
+		this.userId = userId;
 	}
 }
