@@ -25,8 +25,7 @@ public class AssignmentRequestService {
 	}
 	
 	public List <Assignment> requestAllAssignments () {
-		List<Assignment> allAssignmentsList;
-		return allAssignmentsList = assignmentRepository.findAll();
+		List<Assignment> allAssignmentsList = assignmentRepository.findAll();
+		return allAssignmentsList;
 	}
-
 }

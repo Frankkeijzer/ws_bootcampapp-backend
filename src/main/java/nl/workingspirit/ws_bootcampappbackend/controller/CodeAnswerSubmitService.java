@@ -14,7 +14,11 @@ public class CodeAnswerSubmitService {
 	@Autowired
 	CodeAnswerSubmitRepository codeAnswerSubmitRepository;
 	
-	public void postCodeAnswerSubmit(CodeAnswerSubmit codeAnswerSubmit) {
+	@Autowired
+	UserRepository userRepo;
+	
+	public void postCodeAnswerSubmit(CodeAnswerSubmit codeAnswerSubmit, Long id) {
+		codeAnswerSubmit.setUser(userRepo.findById(id).get());
 		codeAnswerSubmitRepository.save(codeAnswerSubmit);
 	}
 }
