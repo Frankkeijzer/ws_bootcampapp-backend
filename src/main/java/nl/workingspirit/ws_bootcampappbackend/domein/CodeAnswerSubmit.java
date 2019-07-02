@@ -9,6 +9,10 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 
+import org.hibernate.annotations.CreationTimestamp;
+
+
+
 @Entity
 public class CodeAnswerSubmit {
 	@Id
@@ -16,6 +20,7 @@ public class CodeAnswerSubmit {
 	private Long id;
 	@Column(length=10000, nullable=false)
 	private String code;
+	@CreationTimestamp
 	private Timestamp timeOfSubmit;
 	
 	@ManyToOne
