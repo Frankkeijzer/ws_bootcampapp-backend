@@ -32,7 +32,6 @@ public class LoginEndpoint extends WebSecurityConfigurerAdapter {
 
 	@PostMapping("userLogin")
 	public ResponseEntity<LoginDTO> postUserLogin(@RequestBody User user) {
-		System.out.println("hij doet het niet");
 		return loginService.postUserLogin(user);
 	}
 //	if (inlogGebruiker.isPresent()) {
