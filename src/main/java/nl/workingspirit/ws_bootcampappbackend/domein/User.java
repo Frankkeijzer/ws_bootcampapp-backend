@@ -63,7 +63,7 @@ public class User {
 	public List<CodeAnswerSubmit> getCodeAnswerSubmit() {
 		return Collections.unmodifiableList(codeAnswerSubmit);
 	}
-	public void addCodeAnser(CodeAnswerSubmit codeAnswerSubmit) {
+	public void addCodeAnswer(CodeAnswerSubmit codeAnswerSubmit) {
 		this.codeAnswerSubmit.add(codeAnswerSubmit);
 	}
 }

@@ -15,8 +15,8 @@ public class CodeAnswerSubmitEndpoint {
 	@Autowired
 	CodeAnswerSubmitService codeAnswerSubmitService;
 	
-	@PostMapping("AddCodeAnswers/{id}")
-	public void postCodeAnswers(@RequestBody CodeAnswerSubmit codeAnswerSubmit, @PathVariable Long id) {
-		codeAnswerSubmitService.postCodeAnswerSubmit(codeAnswerSubmit, id);
+	@PostMapping("AddCodeAnswers/{assignmentId}/{userId}")
+	public void postCodeAnswers(@RequestBody CodeAnswerSubmit codeAnswerSubmit, @PathVariable Long assignmentId, @PathVariable Long userId) {
+		codeAnswerSubmitService.postCodeAnswerSubmit(codeAnswerSubmit, assignmentId, userId);
 	}
 }

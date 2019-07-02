@@ -11,8 +11,6 @@ import javax.persistence.ManyToOne;
 
 import org.hibernate.annotations.CreationTimestamp;
 
-
-
 @Entity
 public class CodeAnswerSubmit {
 	@Id
