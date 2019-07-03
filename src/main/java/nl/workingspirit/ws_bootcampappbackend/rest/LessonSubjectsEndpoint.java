@@ -34,7 +34,7 @@ public class LessonSubjectsEndpoint {
 	}
 	
 	@GetMapping("GetLessonSubjects/{day}")
-	public ResponseEntity<List<LessonSubjects>> getLessonSubjectsByDay(@PathVariable String day){
+	public ResponseEntity<LessonSubjects> getLessonSubjectsByDay(@PathVariable String day){
 		return ResponseEntity.ok(lessonSubjectsRequestService.requestLessonSubjectsByDay(day));
 	}
 }

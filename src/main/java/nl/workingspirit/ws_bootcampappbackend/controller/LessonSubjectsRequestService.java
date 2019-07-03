@@ -20,7 +20,7 @@ public class LessonSubjectsRequestService {
 		return lessonSubjectsRepository.findAll();
 	}
 
-	public List<LessonSubjects> requestLessonSubjectsByDay(String day) {
+	public LessonSubjects requestLessonSubjectsByDay(String day) {
 		return lessonSubjectsRepository.findByDay(day);
 	}
 }
