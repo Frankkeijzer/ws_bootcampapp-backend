@@ -1,5 +1,8 @@
 package nl.workingspirit.ws_bootcampappbackend.controller;
 
+import java.util.List;
+import java.util.Optional;
+
 import javax.transaction.Transactional;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,5 +18,9 @@ public class LessonSubjectsRequestService {
 	
 	public Iterable<LessonSubjects> requestAllLessonSubjects(){
 		return lessonSubjectsRepository.findAll();
+	}
+
+	public List<LessonSubjects> requestLessonSubjectsByDay(String day) {
+		return lessonSubjectsRepository.findByDay(day);
 	}
 }
