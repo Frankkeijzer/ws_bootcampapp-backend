@@ -1,7 +1,12 @@
 package nl.workingspirit.ws_bootcampappbackend.rest;
 
+import java.util.List;
+import java.util.Optional;
+
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
@@ -26,5 +31,10 @@ public class LessonSubjectsEndpoint {
 	@GetMapping("GetLessonSubjects")
 	public Iterable<LessonSubjects> getAllLessonSubjects(){
 		return lessonSubjectsRequestService.requestAllLessonSubjects();
+	}
+	
+	@GetMapping("GetLessonSubjects/{day}")
+	public ResponseEntity<List<LessonSubjects>> getLessonSubjectsByDay(@PathVariable String day){
+		return ResponseEntity.ok(lessonSubjectsRequestService.requestLessonSubjectsByDay(day));
 	}
 }
