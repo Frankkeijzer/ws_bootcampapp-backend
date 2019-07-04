@@ -5,15 +5,14 @@ import javax.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import nl.workingspirit.ws_bootcampappbackend.domein.Assignment;
-
 @Service
 @Transactional
-public class AssignmentPostService {
+public class AssignmentDeleteService {
+
 	@Autowired
-	AssignmentRepository AssignmentRepository;
+	AssignmentRepository assignmentRepository;
 	
-	public void postAssignment(Assignment assignment) {
-		AssignmentRepository.save(assignment);
+	public void deleteAssignment (Long id) {
+		assignmentRepository.deleteById(id);
 	}
 }
