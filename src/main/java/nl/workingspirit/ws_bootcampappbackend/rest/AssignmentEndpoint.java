@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
+import nl.workingspirit.ws_bootcampappbackend.controller.AssignmentDeleteService;
 import nl.workingspirit.ws_bootcampappbackend.controller.AssignmentPostService;
 import nl.workingspirit.ws_bootcampappbackend.controller.AssignmentUpdateService;
 import nl.workingspirit.ws_bootcampappbackend.controller.AssignmentRequestService;
@@ -29,6 +30,8 @@ public class AssignmentEndpoint {
 	AssignmentUpdateService assignmentUpdateService;
 	@Autowired
 	AssignmentRequestService assignmentRequestService;
+	@Autowired
+	AssignmentDeleteService assignmentDeleteService;
 
 	@PostMapping("AddAssignment")
 	public void postAssignment(@RequestBody Assignment assignment) {
@@ -65,4 +68,8 @@ public class AssignmentEndpoint {
 		return ResponseEntity.ok(assignmentRequestService.requestAssignmentTitle(id));
 	}
 
+	@PostMapping("DeleteAssignment/{id}")
+	public void deleteAssignment (@PathVariable Long id) {
+		assignmentDeleteService.deleteAssignment(id);
+	}
 }

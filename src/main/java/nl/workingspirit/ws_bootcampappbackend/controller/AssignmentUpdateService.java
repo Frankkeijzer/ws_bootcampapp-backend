@@ -27,6 +27,7 @@ public class AssignmentUpdateService {
 			target.setDescription(assignment.getDescription());
 			target.setDay(assignment.getDay());
 			target.setLevel(assignment.getLevel());
+			target.setVisible(assignment.isVisible());
 			assignmentRepository.save(target);
 			
 			return Optional.of(target);
