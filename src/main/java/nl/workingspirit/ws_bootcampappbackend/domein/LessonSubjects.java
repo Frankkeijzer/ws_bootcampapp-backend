@@ -41,7 +41,7 @@ public class LessonSubjects {
 	public String getDescription() {
 		return description;
 	}
-	public void setBeschrijving(String description) {
+	public void setDescription(String description) {
 		this.description = description;
 	}
 }
