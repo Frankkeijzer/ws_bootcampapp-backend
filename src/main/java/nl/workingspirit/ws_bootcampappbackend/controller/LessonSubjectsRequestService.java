@@ -1,6 +1,5 @@
 package nl.workingspirit.ws_bootcampappbackend.controller;
 
-import java.util.List;
 import java.util.Optional;
 
 import javax.transaction.Transactional;
@@ -22,5 +21,9 @@ public class LessonSubjectsRequestService {
 
 	public LessonSubjects requestLessonSubjectsByDay(String day) {
 		return lessonSubjectsRepository.findByDay(day);
+	}
+	
+	public Optional<LessonSubjects> requestLessonSubjectsByID(Long id) {
+		return lessonSubjectsRepository.findById(id);
 	}
 }
