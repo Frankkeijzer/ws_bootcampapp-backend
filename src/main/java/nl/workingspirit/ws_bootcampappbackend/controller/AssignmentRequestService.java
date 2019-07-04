@@ -34,4 +34,8 @@ public class AssignmentRequestService {
 		return assignmentRepository.findById(id);
 	
 	}
+	
+	public String requestAssignmentTitle(Long id) {
+		return assignmentRepository.findById(id).get().getTitle();
+	}
 }

@@ -59,5 +59,10 @@ public class AssignmentEndpoint {
 	public ResponseEntity<Optional<Assignment>> getAssignmentByID(@PathVariable Long id){
 		return ResponseEntity.ok(assignmentRequestService.requestAssignmentByID(id));
 	}
+	
+	@GetMapping("GetAssignmentTitle/{id}")
+	public ResponseEntity<String> getAssignmentTitleByCodeAnswerSubmitID(@PathVariable Long id) {
+		return ResponseEntity.ok(assignmentRequestService.requestAssignmentTitle(id));
+	}
 
 }
