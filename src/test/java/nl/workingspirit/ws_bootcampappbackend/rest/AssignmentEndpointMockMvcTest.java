@@ -20,11 +20,14 @@ import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 
+import java.util.Arrays;
+
 import static org.hamcrest.core.Is.is;
 import static org.mockito.Mockito.any;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
-/*
+
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
+/*
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.put;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.delete;
 */
@@ -78,6 +81,28 @@ public class AssignmentEndpointMockMvcTest {
                 .andExpect(jsonPath("$.day", is(assignment.getDay())))
                 .andExpect(jsonPath("$.title", is(assignment.getTitle())))
                 .andExpect(jsonPath("$.level", is(assignment.getLevel())))
+                .andExpect(status().isOk()
+                );
+    }
+
+    @Test
+    public void testGetAllAssignments() throws Exception {
+        //Given
+        Assignment assignment = new Assignment();
+        assignment.setDay("Monday");
+        assignment.setTitle("Java Switch case assignment");
+        assignment.setLevel("5");
+
+        Mockito.when(this.assignmentRequestService.requestAllAssignments()).thenReturn(Arrays.asList(assignment));
+
+        //when
+        this.mockMvc.perform(get("/GetAllAssignments")
+                .contentType(MediaType.APPLICATION_JSON)
+                .content("")).andDo(print())
+// then
+                .andExpect(jsonPath("$[0].day", is(assignment.getDay())))
+                .andExpect(jsonPath("$[0].title", is(assignment.getTitle())))
+                .andExpect(jsonPath("$[0].level", is(assignment.getLevel())))
                 .andExpect(status().isOk()
                 );
     }
