@@ -24,11 +24,9 @@ public class CodeAnswerSubmitEndpoint {
 	public void postCodeAnswers(@RequestBody CodeAnswerSubmit codeAnswerSubmit, @PathVariable Long assignmentId, @PathVariable Long userId) {
 		codeAnswerSubmitService.postCodeAnswerSubmit(codeAnswerSubmit, assignmentId, userId);
 	}
+	
 	@GetMapping("GetAllCodeAnswers/{id}")
-
 	public ResponseEntity<List<CodeAnswerSubmit>> getAllCodeAnswers(@PathVariable Long id) {
-
 		return ResponseEntity.ok(codeAnswerSubmitService.giveCodeAnswerSubmit(id));
-
 	}
 }

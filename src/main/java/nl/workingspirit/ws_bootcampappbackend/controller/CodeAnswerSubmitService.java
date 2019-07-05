@@ -26,6 +26,7 @@ public class CodeAnswerSubmitService {
 	
 	public void postCodeAnswerSubmit(CodeAnswerSubmit codeAnswerSubmit, Long assignmentId, Long userId) {
 		Assignment tempAssignment = assignmentRepo.findById(assignmentId).get();
+		codeAnswerSubmit.setAssignment(tempAssignment);
 		tempAssignment.addUitwerking(codeAnswerSubmit);
 		
 		User tempUser = userRepo.findById(userId).get();
