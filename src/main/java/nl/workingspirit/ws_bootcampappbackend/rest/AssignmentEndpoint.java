@@ -4,7 +4,6 @@ import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -36,8 +35,8 @@ public class AssignmentEndpoint {
 	AssignmentDeleteService assignmentDeleteService;
 
 	@PostMapping("AddAssignment")
-	public void postAssignment(@RequestBody Assignment assignment) {
-		assignmentPostService.postAssignment(assignment);
+	public Assignment postAssignment(@RequestBody Assignment assignment) {
+		return assignmentPostService.postAssignment(assignment);
 	}
 
 	@PutMapping("UpdateAssignment/{id}")
