@@ -5,6 +5,8 @@ import java.util.List;
 
 import javax.persistence.*;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
 @Entity
 public class User {
 	@Id
@@ -23,7 +25,8 @@ public class User {
 	@Column(nullable=false)
 	private Role role;
 	
-	@OneToMany
+	@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER, mappedBy="user")
+	@JsonIgnoreProperties({"user", "assignment"})
 	private List<CodeAnswerSubmit> codeAnswerSubmit;
 	
 	public String getFirstName() {

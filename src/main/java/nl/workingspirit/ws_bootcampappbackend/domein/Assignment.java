@@ -3,12 +3,16 @@ package nl.workingspirit.ws_bootcampappbackend.domein;
 import java.util.Collections;
 import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
+
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 @Entity
 public class Assignment {
@@ -28,7 +32,9 @@ public class Assignment {
 	private String title;
 	@Column(length = 10000, nullable=false)
 	private String codeExample;
-	@OneToMany
+	
+	@OneToMany(cascade = CascadeType.ALL, fetch= FetchType.EAGER, mappedBy="assignment")
+	@JsonIgnoreProperties({"assignment"})
 	private List<CodeAnswerSubmit> codeAnswerSubmit;
 	
 	public Assignment() {	

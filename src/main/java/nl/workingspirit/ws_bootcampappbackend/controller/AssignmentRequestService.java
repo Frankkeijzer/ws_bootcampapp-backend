@@ -35,8 +35,4 @@ public class AssignmentRequestService {
 		return assignmentRepository.findById(id);
 	
 	}
-	
-	public AssignmentDTO requestAssignmentTitle(Long id) {
-		return new AssignmentDTO(assignmentRepository.findById(id).get());
-	}
 }
