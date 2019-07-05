@@ -98,14 +98,16 @@ public class AssignmentEndpointMockMvcTest {
         assignment.setTitle("Java Switch case assignment");
         assignment.setLevel("5");
 
+        final long id = 3;
+
 
         ObjectMapper mapper = new ObjectMapper();
         String json = mapper.writeValueAsString(assignment);
 
-        Mockito.when(this.assignmentUpdateService.updateAssignment(Mockito.eq(3L), any(Assignment.class))).thenReturn(Optional.of(assignment));
+        Mockito.when(this.assignmentUpdateService.updateAssignment(Mockito.eq(id), any(Assignment.class))).thenReturn(Optional.of(assignment));
 
         //when
-        this.mockMvc.perform(put("/UpdateAssignment/3") // watch the 3 here!!!
+        this.mockMvc.perform(put("/UpdateAssignment/"+id)
                 .contentType(MediaType.APPLICATION_JSON)
                 .content(json)).andDo(print())
 // then
@@ -115,9 +117,6 @@ public class AssignmentEndpointMockMvcTest {
                 .andExpect(status().isOk()
                 );
     }
-
-
-
 
     @Test
     public void testGetAllAssignments() throws Exception {
