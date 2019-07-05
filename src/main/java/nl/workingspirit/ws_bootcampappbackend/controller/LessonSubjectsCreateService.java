@@ -16,7 +16,6 @@ public class LessonSubjectsCreateService {
 	public boolean createLessonSubjects(LessonSubjects lessonSubjects) {
 		lessonSubjectsRepository.save(lessonSubjects);
 		if (lessonSubjectsRepository.findById(lessonSubjects.getId()).isPresent()) {
-			System.out.println(lessonSubjects.getId());
 			return true;
 		}
 		else {

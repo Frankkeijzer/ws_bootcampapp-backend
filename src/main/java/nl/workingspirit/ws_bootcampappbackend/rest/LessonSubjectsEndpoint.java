@@ -53,7 +53,6 @@ public class LessonSubjectsEndpoint {
 	
 	@GetMapping("GetLessonSubjectsByID/{id}")
 	public ResponseEntity<Optional<LessonSubjects>> getLessonSubjectsByID(@PathVariable Long id){
-		System.out.println("ja"+ id);
 		return ResponseEntity.ok(lessonSubjectsRequestService.requestLessonSubjectsByID(id));
 	}
 	
