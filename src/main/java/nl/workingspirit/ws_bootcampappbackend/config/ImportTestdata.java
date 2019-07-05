@@ -11,9 +11,11 @@ import com.github.javafaker.Faker;
 import com.github.javafaker.Name;
 
 import nl.workingspirit.ws_bootcampappbackend.controller.AssignmentRepository;
+import nl.workingspirit.ws_bootcampappbackend.controller.LessonSubjectsRepository;
 import nl.workingspirit.ws_bootcampappbackend.controller.UserRepository;
 import nl.workingspirit.ws_bootcampappbackend.domein.User;
 import nl.workingspirit.ws_bootcampappbackend.domein.Assignment;
+import nl.workingspirit.ws_bootcampappbackend.domein.LessonSubjects;
 import nl.workingspirit.ws_bootcampappbackend.domein.Role;
 
 
@@ -22,6 +24,84 @@ public class ImportTestdata {
 
     private final String WACHTWOORD = "kombinnen";
     private final int NUMBEROFUSERS = 14;
+    
+    @Bean
+    public CommandLineRunner importLessonSubjectsTestdata(LessonSubjectsRepository lessonSubjectsRepository) {
+    	return (args) -> {
+    		lessonSubjectsRepository.save(createLessonSubjects(
+    				"1",
+    				"Om te oefenen met de vandaag opgedane kennis hebben we een aantal opgaven gemaakt oplopend in moeilijkheidsgraad. We vragen drie (meer mag ook) opgaven (zie onderaan de pagina) te maken en deze uiterlijk voor donderdagochtend 9:00 uur in te leveren. Probeer daarbij de moeilijkste opgaven te maken de je aankunt. Als het niet lukt om een opgave te maken, doe dan 3 pogingen en lever deze in. Dan kunnen we zien waar je vast komt te zitten en je tips geven om verder te komen.",
+    				"Voetbal.java\r\n" +
+    				"class Voetbal {\r\n" +
+    				"    public static void main (String[] args){\r\n"+
+    				"        System.out.println(\"Hallo Deventer\");\r\n"+
+    				"        int getal1;\r\n"+
+    				"        getal1 = 6;\r\n"+
+    				"        System.out.println(getal1);\r\n"+
+    				"        System.out.println(getal1 * getal1);\r\n"+
+    				"        int uitkomst = getal1 * getal1;\r\n"+
+    				"        System.out.println(\"De uitkomst van \" + getal1 + \" maal \" + getal1 + \" wordt \" + uitkomst);\r\n"+
+    				"        String weekdag;\r\n"+
+    				"        weekdag = \"woensdag\";\r\n"+
+    				"        System.out.println(weekdag);\r\n"+
+    				"        // double - getal heeft formaat 12.231\r\n"+
+    				"        double kommagetal = 3.1;\r\n"+
+    				"        System.out.println(kommagetal);\r\n"+
+    				"        // boolean - mogelijke waardes true / false\r\n"+
+    				"        boolean b = true;\r\n"+
+    				"        System.out.println(\"Hallo \" + \"\" + b + kommagetal);\r\n"+
+    				"    }\r\n"+
+    				"}\r\n"
+    				,
+    				"Voorbeeld “Hello World” programma:\r\n" +
+    				"\r\n" +
+    				"public class Hello { \r\n" +
+    				"\r\n" +
+    				"    public static void main(String[] args) { \r\n" +
+    				"\r\n" +
+    				"        System.out.println(\"Hello World!\"); \r\n" +
+    				"\r\n" +
+    				"    }\r\n" +
+    				"\r\n"+
+    				"}"
+    				));
+    		lessonSubjectsRepository.save(createLessonSubjects(
+    				"2",
+    				"Als afsluiting van dag 2 hebben we wederom een aantal opgaven bedacht. We vragen je vandaag opnieuw om ten minste 3 opgaven in te leveren. Meer mag altijd. Probeer de moeilijkste te maken die je aankunt. Ze zijn gerangschikt in oplopende moeilijkheidsgraad. Vind je de opgaven te lastig, kies dan uit opgaven van dag 1. Inleveren kan tot vrijdag ochtend 9:00 uur.",
+    				"Boot.java\r\n" +
+    				"import java.util.Scanner;\r\n"+
+    				"\r\n"+		
+    	    		"class Boot {\r\n" +
+    	    		"    public static void main (String[] args){\r\n"+
+    	    		"        Scanner sc = new Scanner(System.in);\r\n"+
+    	    		"        System.out.println(\"Voer je leeftijd in: \");\r\n"+
+    	    		"        int leeftijd = sc.nextInt();\r\n"+
+    	    		"        if (leeftijd <= 18) {\r\n"+
+    	    		"            System.out.println(\"Je mag nog geen alcohol!\");\r\n"+
+    	    		"        } else {\r\n"+
+    	    		"            System.out.println(\"U mag alcohol drinken!\");\r\n"+
+    	    		"        }\r\n"+
+    	    		"    }\r\n"+
+    	    		"}\r\n",
+    				"Gebruik variabele en assignment:\r\n"+
+    	    		"\r\n"+
+    				"Fout:\r\n"+
+    	    		"\r\n"+
+    				"x = 3\r\n"+
+    	    		"\r\n"+
+    				"Eerst type van variabele aangeven:\r\n"+
+    	    		"\r\n"+
+    				"int x;\r\n"+
+    	    		"\r\n"+
+    				"x = 3;\r\n"+
+    	    		"\r\n"+
+    				"of in een keer:\r\n"+
+    	    		"\r\n"+
+    				"int x = 3;\r\n"
+    				));
+    	};
+    	
+    }
 
     @Bean
     public CommandLineRunner importUserTestdata(UserRepository userRepository) {
@@ -144,5 +224,14 @@ public class ImportTestdata {
     	assignment.setTitle(title);
     	assignment.setCodeExample(codeExample);
     	return assignment;
+    }
+    
+    private LessonSubjects createLessonSubjects(String day, String title, String code, String description) {
+    	LessonSubjects lessonSubject = new LessonSubjects();
+    	lessonSubject.setDay(day);
+    	lessonSubject.setTitle(title);
+    	lessonSubject.setCode(code);
+    	lessonSubject.setDescription(description);
+    	return lessonSubject;
     }
 }

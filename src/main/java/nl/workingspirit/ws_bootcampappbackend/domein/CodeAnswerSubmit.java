@@ -4,6 +4,7 @@ import java.sql.Timestamp;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -20,6 +21,9 @@ public class CodeAnswerSubmit {
 	private String code;
 	@CreationTimestamp
 	private Timestamp timeOfSubmit;
+	
+	@ManyToOne
+	private Assignment assignment;
 	
 	@ManyToOne
 	private User user;
@@ -39,7 +43,16 @@ public class CodeAnswerSubmit {
 	public void setTimeOfSubmit(Timestamp timeOfSubmit) {
 		this.timeOfSubmit = timeOfSubmit;
 	}
+	public User getUser() {
+		return user;
+	}
 	public void setUser(User user) {
 		this.user = user;
+	}
+	public Assignment getAssignment() {
+		return assignment;
+	}
+	public void setAssignment(Assignment assignment) {
+		this.assignment = assignment;
 	}
 }

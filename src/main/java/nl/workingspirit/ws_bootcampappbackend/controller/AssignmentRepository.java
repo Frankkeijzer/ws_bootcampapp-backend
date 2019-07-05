@@ -11,6 +11,7 @@ public interface AssignmentRepository extends CrudRepository<Assignment,Long>{
 	List<Assignment> findAllByVisible(boolean visible);
 	List<Assignment> findAll();
 	Optional<Assignment> findById(Long id);
+	
 
 
 }
