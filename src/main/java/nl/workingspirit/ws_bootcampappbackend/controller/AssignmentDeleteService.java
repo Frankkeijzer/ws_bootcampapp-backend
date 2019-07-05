@@ -12,7 +12,12 @@ public class AssignmentDeleteService {
 	@Autowired
 	AssignmentRepository assignmentRepository;
 	
-	public void deleteAssignment (Long id) {
-		assignmentRepository.deleteById(id);
+	public boolean deleteAssignment (Long id) {
+		if (assignmentRepository.findById(id).isPresent()) {
+			assignmentRepository.deleteById(id);
+			return true;
+		} else {
+			return false;
+		}
 	}
 }

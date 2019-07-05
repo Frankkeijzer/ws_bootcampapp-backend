@@ -66,7 +66,11 @@ public class AssignmentEndpoint {
 	}
 	
 	@DeleteMapping("DeleteAssignment/{id}")
-	public void deleteAssignment (@PathVariable Long id) {
-		assignmentDeleteService.deleteAssignment(id);
+	public ResponseEntity<HttpStatus> deleteAssignment (@PathVariable Long id) {
+		if (assignmentDeleteService.deleteAssignment(id)) {
+			return ResponseEntity.status(HttpStatus.OK).build();
+		} else {
+			return ResponseEntity.status(HttpStatus.BAD_REQUEST).build();
+		}
 	}
 }
