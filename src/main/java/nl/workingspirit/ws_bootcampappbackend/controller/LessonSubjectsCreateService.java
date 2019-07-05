@@ -13,7 +13,14 @@ public class LessonSubjectsCreateService {
 	@Autowired
 	LessonSubjectsRepository lessonSubjectsRepository;
 	
-	public void createLessonSubjects(LessonSubjects lessonSubjects) {
+	public boolean createLessonSubjects(LessonSubjects lessonSubjects) {
 		lessonSubjectsRepository.save(lessonSubjects);
+		if (lessonSubjectsRepository.findById(lessonSubjects.getId()).isPresent()) {
+			System.out.println(lessonSubjects.getId());
+			return true;
+		}
+		else {
+			return false;
+		}
 	}
 }

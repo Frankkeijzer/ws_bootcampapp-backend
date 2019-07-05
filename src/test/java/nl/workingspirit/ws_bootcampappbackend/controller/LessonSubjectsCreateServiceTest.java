@@ -1,5 +1,9 @@
 package nl.workingspirit.ws_bootcampappbackend.controller;
 
+import static org.mockito.Mockito.when;
+
+import java.util.Optional;
+
 import org.junit.*;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
@@ -36,9 +40,13 @@ public class LessonSubjectsCreateServiceTest {
     @Test
     public void createLessonSubjectsTest() {
     	LessonSubjects lessonsubjects = new LessonSubjects();
+    	Long id = lessonsubjects.getId();
     	lessonsubjects.setTitle("Java beginselen");
     	
-    	this.sut.createLessonSubjects(lessonsubjects);
+    	when(lessonsubjectsRepository.findById(id)).thenReturn(Optional.of(lessonsubjects));
+      	boolean succeeded = sut.createLessonSubjects(lessonsubjects);
+   
+      	Assert.assertTrue(succeeded);
     	Mockito.verify(lessonsubjectsRepository).save(Mockito.eq(lessonsubjects));
     	
     }

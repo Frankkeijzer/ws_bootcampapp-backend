@@ -3,6 +3,7 @@ package nl.workingspirit.ws_bootcampappbackend.rest;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -31,8 +32,13 @@ public class LessonSubjectsEndpoint {
 	LessonSubjectsDeleteService lessonSubjectsDeleteService;
 	
 	@PostMapping("AddLessonSubjects")
-	public void postLessonSubjects(@RequestBody LessonSubjects lessonSubjects) {
-		lessonSubjectsCreateService.createLessonSubjects(lessonSubjects);
+	public ResponseEntity<HttpStatus> postLessonSubjects(@RequestBody LessonSubjects lessonSubjects) {
+		if (lessonSubjectsCreateService.createLessonSubjects(lessonSubjects)) {
+			return ResponseEntity.status(HttpStatus.OK).build();
+		}
+		else{
+			return ResponseEntity.status(HttpStatus.BAD_REQUEST).build();
+		}
 	}
 	
 	@GetMapping("GetLessonSubjects")
