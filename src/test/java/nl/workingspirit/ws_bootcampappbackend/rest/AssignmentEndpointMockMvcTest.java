@@ -107,7 +107,7 @@ public class AssignmentEndpointMockMvcTest {
         Mockito.when(this.assignmentUpdateService.updateAssignment(Mockito.eq(id), any(Assignment.class))).thenReturn(Optional.of(assignment));
 
         //when
-        this.mockMvc.perform(put("/UpdateAssignment/"+id)
+        this.mockMvc.perform(put("/UpdateAssignment/" + id)
                 .contentType(MediaType.APPLICATION_JSON)
                 .content(json)).andDo(print())
 // then
@@ -117,6 +117,33 @@ public class AssignmentEndpointMockMvcTest {
                 .andExpect(status().isOk()
                 );
     }
+
+    @Test
+    public void testUpdateAssignmentForNonExistingAssignment() throws Exception {
+
+        //Given
+        Assignment assignment = new Assignment();
+        assignment.setDay("Monday");
+        assignment.setTitle("Java Switch case assignment");
+        assignment.setLevel("5");
+
+        final long id = 13; // non existing!!!
+
+
+        ObjectMapper mapper = new ObjectMapper();
+        String json = mapper.writeValueAsString(assignment);
+
+        Mockito.when(this.assignmentUpdateService.updateAssignment(Mockito.eq(id), any(Assignment.class))).thenReturn(Optional.empty());
+
+        //when
+        this.mockMvc.perform(put("/UpdateAssignment/" + id)
+                .contentType(MediaType.APPLICATION_JSON)
+                .content(json)).andDo(print())
+// then
+                .andExpect(status().isNotFound()
+                );
+    }
+
 
     @Test
     public void testGetAllAssignments() throws Exception {
