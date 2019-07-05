@@ -100,8 +100,9 @@ public class Assignment {
 	public List<CodeAnswerSubmit> getCodeAnswerSubmit() {
 		return Collections.unmodifiableList(codeAnswerSubmit);
 	}
-
+	
 	public void addUitwerking(CodeAnswerSubmit codeAnswerSubmit) {
 		this.codeAnswerSubmit.add(codeAnswerSubmit);
 	}
+
 }
