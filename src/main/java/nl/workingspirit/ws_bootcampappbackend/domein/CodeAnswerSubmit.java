@@ -22,6 +22,9 @@ public class CodeAnswerSubmit {
 	private Timestamp timeOfSubmit;
 	
 	@ManyToOne
+	private Assignment assignment;
+	
+	@ManyToOne
 	private User user;
 	
 	public Long getId() {
@@ -41,5 +44,8 @@ public class CodeAnswerSubmit {
 	}
 	public void setUser(User user) {
 		this.user = user;
+	}
+	public void setAssignment(Assignment assignment) {
+		this.assignment = assignment;
 	}
 }
