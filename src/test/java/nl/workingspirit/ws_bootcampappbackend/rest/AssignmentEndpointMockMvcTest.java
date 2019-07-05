@@ -21,14 +21,16 @@ import org.mockito.Mock;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 
 import java.util.Arrays;
+import java.util.Optional;
 
 import static org.hamcrest.core.Is.is;
 import static org.mockito.Mockito.any;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
-/*
+
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.put;
+/*
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.delete;
 */
 import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
@@ -46,8 +48,10 @@ public class AssignmentEndpointMockMvcTest {
 
     @Mock
     AssignmentPostService assignmentPostService;
+
     @Mock
     AssignmentUpdateService assignmentUpdateService;
+
     @Mock
     AssignmentRequestService assignmentRequestService;
 
@@ -84,6 +88,36 @@ public class AssignmentEndpointMockMvcTest {
                 .andExpect(status().isOk()
                 );
     }
+
+    @Test
+    public void testUpdateAssignment() throws Exception {
+
+        //Given
+        Assignment assignment = new Assignment();
+        assignment.setDay("Monday");
+        assignment.setTitle("Java Switch case assignment");
+        assignment.setLevel("5");
+
+
+        ObjectMapper mapper = new ObjectMapper();
+        String json = mapper.writeValueAsString(assignment);
+
+        Mockito.when(this.assignmentUpdateService.updateAssignment(Mockito.eq(3L), any(Assignment.class))).thenReturn(Optional.of(assignment));
+
+        //when
+        this.mockMvc.perform(put("/UpdateAssignment/3") // watch the 3 here!!!
+                .contentType(MediaType.APPLICATION_JSON)
+                .content(json)).andDo(print())
+// then
+                .andExpect(jsonPath("$.day", is(assignment.getDay())))
+                .andExpect(jsonPath("$.title", is(assignment.getTitle())))
+                .andExpect(jsonPath("$.level", is(assignment.getLevel())))
+                .andExpect(status().isOk()
+                );
+    }
+
+
+
 
     @Test
     public void testGetAllAssignments() throws Exception {
