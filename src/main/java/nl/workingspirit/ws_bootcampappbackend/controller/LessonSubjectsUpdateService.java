@@ -7,7 +7,6 @@ import javax.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import nl.workingspirit.ws_bootcampappbackend.domein.Assignment;
 import nl.workingspirit.ws_bootcampappbackend.domein.LessonSubjects;
 
 @Service
