@@ -68,9 +68,4 @@ public class AssignmentEndpoint {
 	public void deleteAssignment (@PathVariable Long id) {
 		assignmentDeleteService.deleteAssignment(id);
 	}
-	
-	@GetMapping("GetAssignmentTitle/{id}")
-	public ResponseEntity<AssignmentDTO> getAssignmentTitleByCodeAnswerSubmitID(@PathVariable Long id) {
-		return ResponseEntity.ok(assignmentRequestService.requestAssignmentTitle(id));
-	}
 }
