@@ -10,4 +10,6 @@ import nl.workingspirit.ws_bootcampappbackend.domein.LessonSubjects;
 public interface LessonSubjectsRepository extends CrudRepository<LessonSubjects,Long>{
 	LessonSubjects findByDay(String day);
 	List<LessonSubjects> findAll();
+	Optional<LessonSubjects> findById(Long id);
+	
 }

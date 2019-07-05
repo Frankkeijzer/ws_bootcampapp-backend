@@ -10,8 +10,12 @@ import org.springframework.stereotype.Service;
 public class LessonSubjectsDeleteService {
 	@Autowired
 	LessonSubjectsRepository lessonSubjectsRepository;
-	
-	public void deleteLessonSubject(Long id) {
-		lessonSubjectsRepository.deleteById(id);
+	public boolean deleteLessonSubject (Long id) {
+		if (lessonSubjectsRepository.findById(id).isPresent()) {
+			lessonSubjectsRepository.deleteById(id);
+			return true;
+		} else {
+			return false;
+		}
 	}
 }
