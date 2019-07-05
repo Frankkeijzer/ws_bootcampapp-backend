@@ -1,5 +1,7 @@
 package nl.workingspirit.ws_bootcampappbackend.controller;
 
+import java.util.List;
+
 import javax.transaction.Transactional;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -30,5 +32,10 @@ public class CodeAnswerSubmitService {
 		codeAnswerSubmit.setUser(tempUser);
 		tempUser.addCodeAnswer(codeAnswerSubmit);
 		codeAnswerSubmitRepository.save(codeAnswerSubmit);
+	}
+
+	public List<CodeAnswerSubmit> giveCodeAnswerSubmit(Long id) {
+		User tempUser = userRepo.findById(id).get();
+		return tempUser.getCodeAnswerSubmit();
 	}
 }
