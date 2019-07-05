@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import nl.workingspirit.ws_bootcampappbackend.domein.Assignment;
+import nl.workingspirit.ws_bootcampappbackend.dto.AssignmentDTO;
 
 
 @Service
@@ -35,7 +36,7 @@ public class AssignmentRequestService {
 	
 	}
 	
-	public String requestAssignmentTitle(Long id) {
-		return assignmentRepository.findById(id).get().getTitle();
+	public AssignmentDTO requestAssignmentTitle(Long id) {
+		return new AssignmentDTO(assignmentRepository.findById(id).get());
 	}
 }

@@ -20,6 +20,7 @@ import nl.workingspirit.ws_bootcampappbackend.controller.AssignmentRequestServic
 import nl.workingspirit.ws_bootcampappbackend.domein.Assignment;
 import nl.workingspirit.ws_bootcampappbackend.domein.Role;
 import nl.workingspirit.ws_bootcampappbackend.domein.User;
+import nl.workingspirit.ws_bootcampappbackend.dto.AssignmentDTO;
 
 @RestController
 public class AssignmentEndpoint {
@@ -62,14 +63,14 @@ public class AssignmentEndpoint {
 	public ResponseEntity<Optional<Assignment>> getAssignmentByID(@PathVariable Long id){
 		return ResponseEntity.ok(assignmentRequestService.requestAssignmentByID(id));
 	}
-	
-	@GetMapping("GetAssignmentTitle/{id}")
-	public ResponseEntity<String> getAssignmentTitleByCodeAnswerSubmitID(@PathVariable Long id) {
-		return ResponseEntity.ok(assignmentRequestService.requestAssignmentTitle(id));
-	}
 
 	@PostMapping("DeleteAssignment/{id}")
 	public void deleteAssignment (@PathVariable Long id) {
 		assignmentDeleteService.deleteAssignment(id);
+	}
+	
+	@GetMapping("GetAssignmentTitle/{id}")
+	public ResponseEntity<AssignmentDTO> getAssignmentTitleByCodeAnswerSubmitID(@PathVariable Long id) {
+		return ResponseEntity.ok(assignmentRequestService.requestAssignmentTitle(id));
 	}
 }
