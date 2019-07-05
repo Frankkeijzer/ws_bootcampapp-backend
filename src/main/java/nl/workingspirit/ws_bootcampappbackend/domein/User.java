@@ -5,6 +5,8 @@ import java.util.List;
 
 import javax.persistence.*;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
 @Entity
 public class User {
 	@Id
@@ -23,7 +25,8 @@ public class User {
 	@Column(nullable=false)
 	private Role role;
 	
-	@OneToMany
+	@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER, mappedBy="user")
+	@JsonIgnoreProperties({"user", "assignment"})
 	private List<CodeAnswerSubmit> codeAnswerSubmit;
 	
 	public String getFirstName() {
@@ -63,7 +66,7 @@ public class User {
 	public List<CodeAnswerSubmit> getCodeAnswerSubmit() {
 		return Collections.unmodifiableList(codeAnswerSubmit);
 	}
-	public void addCodeAnser(CodeAnswerSubmit codeAnswerSubmit) {
+	public void addCodeAnswer(CodeAnswerSubmit codeAnswerSubmit) {
 		this.codeAnswerSubmit.add(codeAnswerSubmit);
 	}
 }

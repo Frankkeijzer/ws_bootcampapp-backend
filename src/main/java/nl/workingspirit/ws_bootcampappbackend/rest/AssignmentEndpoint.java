@@ -6,6 +6,7 @@ import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -13,12 +14,14 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
+import nl.workingspirit.ws_bootcampappbackend.controller.AssignmentDeleteService;
 import nl.workingspirit.ws_bootcampappbackend.controller.AssignmentPostService;
 import nl.workingspirit.ws_bootcampappbackend.controller.AssignmentUpdateService;
 import nl.workingspirit.ws_bootcampappbackend.controller.AssignmentRequestService;
 import nl.workingspirit.ws_bootcampappbackend.domein.Assignment;
 import nl.workingspirit.ws_bootcampappbackend.domein.Role;
 import nl.workingspirit.ws_bootcampappbackend.domein.User;
+import nl.workingspirit.ws_bootcampappbackend.dto.AssignmentDTO;
 
 @RestController
 public class AssignmentEndpoint {
@@ -29,6 +32,8 @@ public class AssignmentEndpoint {
 	AssignmentUpdateService assignmentUpdateService;
 	@Autowired
 	AssignmentRequestService assignmentRequestService;
+	@Autowired
+	AssignmentDeleteService assignmentDeleteService;
 
 	@PostMapping("AddAssignment")
 	public void postAssignment(@RequestBody Assignment assignment) {
@@ -54,5 +59,18 @@ public class AssignmentEndpoint {
 	public ResponseEntity<List<Assignment>> getAllAssignmentsDocent() {
 		return ResponseEntity.ok(assignmentRequestService.requestAllAssignments());
 	}
-
+	
+	@GetMapping("GetAssignment/{id}")
+	public ResponseEntity<Optional<Assignment>> getAssignmentByID(@PathVariable Long id){
+		return ResponseEntity.ok(assignmentRequestService.requestAssignmentByID(id));
+	}
+	
+	@DeleteMapping("DeleteAssignment/{id}")
+	public ResponseEntity<HttpStatus> deleteAssignment (@PathVariable Long id) {
+		if (assignmentDeleteService.deleteAssignment(id)) {
+			return ResponseEntity.status(HttpStatus.OK).build();
+		} else {
+			return ResponseEntity.status(HttpStatus.BAD_REQUEST).build();
+		}
+	}
 }

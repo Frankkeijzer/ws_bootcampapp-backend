@@ -5,20 +5,16 @@ import javax.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import nl.workingspirit.ws_bootcampappbackend.domein.LessonSubjects;
-
 @Service
 @Transactional
-public class LessonSubjectsCreateService {
+public class LessonSubjectsDeleteService {
 	@Autowired
 	LessonSubjectsRepository lessonSubjectsRepository;
-	
-	public boolean createLessonSubjects(LessonSubjects lessonSubjects) {
-		lessonSubjectsRepository.save(lessonSubjects);
-		if (lessonSubjectsRepository.findById(lessonSubjects.getId()).isPresent()) {
+	public boolean deleteLessonSubject (Long id) {
+		if (lessonSubjectsRepository.findById(id).isPresent()) {
+			lessonSubjectsRepository.deleteById(id);
 			return true;
-		}
-		else {
+		} else {
 			return false;
 		}
 	}

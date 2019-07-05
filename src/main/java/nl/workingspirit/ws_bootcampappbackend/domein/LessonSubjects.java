@@ -12,6 +12,7 @@ public class LessonSubjects {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 	private String day;
+	@Column(length = 1500)
 	private String title;
 	@Column(length = 10000)
 	private String code;
@@ -41,7 +42,7 @@ public class LessonSubjects {
 	public String getDescription() {
 		return description;
 	}
-	public void setBeschrijving(String description) {
+	public void setDescription(String description) {
 		this.description = description;
 	}
 }

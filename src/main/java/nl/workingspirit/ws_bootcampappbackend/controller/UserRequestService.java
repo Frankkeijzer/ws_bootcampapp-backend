@@ -48,6 +48,7 @@ public class UserRequestService {
 		return usersList;
 	}
 	
+	//Wordt nog niet gebruikt
 	public List<UserWithoutEmailDTO> requestUsersWithoutPassword(Role role) {
 		List<UserWithoutEmailDTO> usersList = new ArrayList<>();
 		
