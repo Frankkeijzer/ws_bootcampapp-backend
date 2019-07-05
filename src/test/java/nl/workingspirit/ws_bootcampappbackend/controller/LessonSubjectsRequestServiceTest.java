@@ -3,6 +3,7 @@ package nl.workingspirit.ws_bootcampappbackend.controller;
 import static org.mockito.Mockito.when;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 import org.junit.Assert;
@@ -38,12 +39,13 @@ public class LessonSubjectsRequestServiceTest {
     
     @Test
     public void requestAllLessonSubjectsTest() {
-    	List<LessonSubjects> expectedList = testList;
-    	when(lessonsubjectsRepository.findAll()).thenReturn(expectedList);
+    	when(lessonsubjectsRepository.findAll()).thenReturn(Collections.singletonList(lessonsubjects));
     	
     	List<LessonSubjects> resultList = sut.requestAllLessonSubjects();
     	
-    	Mockito.verify(lessonsubjectsRepository).findAll();
-    	Assert.assertTrue(resultList.contains(lessonsubjects));
+    	Assert.assertTrue(resultList.size() == 1);
+    	
+    	LessonSubjects requestedLessonSubjects = resultList.get(0);
+    	Assert.assertEquals(lessonsubjects, requestedLessonSubjects);
     }
 }
