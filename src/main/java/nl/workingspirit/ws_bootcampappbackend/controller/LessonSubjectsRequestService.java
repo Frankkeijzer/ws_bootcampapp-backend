@@ -1,5 +1,6 @@
 package nl.workingspirit.ws_bootcampappbackend.controller;
 
+import java.util.List;
 import java.util.Optional;
 
 import javax.transaction.Transactional;
@@ -15,7 +16,7 @@ public class LessonSubjectsRequestService {
 	@Autowired
 	LessonSubjectsRepository lessonSubjectsRepository;
 	
-	public Iterable<LessonSubjects> requestAllLessonSubjects(){
+	public List<LessonSubjects> requestAllLessonSubjects(){
 		return lessonSubjectsRepository.findAll();
 	}
 
