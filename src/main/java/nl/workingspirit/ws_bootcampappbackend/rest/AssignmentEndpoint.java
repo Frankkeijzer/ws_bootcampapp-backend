@@ -73,9 +73,4 @@ public class AssignmentEndpoint {
 			return ResponseEntity.status(HttpStatus.BAD_REQUEST).build();
 		}
 	}
-	
-	@GetMapping("GetAssignmentTitle/{id}")
-	public ResponseEntity<AssignmentDTO> getAssignmentTitleByCodeAnswerSubmitID(@PathVariable Long id) {
-		return ResponseEntity.ok(assignmentRequestService.requestAssignmentTitle(id));
-	}
 }
