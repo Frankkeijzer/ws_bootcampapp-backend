@@ -34,7 +34,7 @@ public class CodeAnswerSubmitService {
 		tempUser.addCodeAnswer(codeAnswerSubmit);
 		codeAnswerSubmitRepository.save(codeAnswerSubmit);
 	}
-	
+
 	public List<CodeAnswerSubmit> giveCodeAnswerSubmit(Long id) {
 		User tempUser = userRepo.findById(id).get();
 		return tempUser.getCodeAnswerSubmit();

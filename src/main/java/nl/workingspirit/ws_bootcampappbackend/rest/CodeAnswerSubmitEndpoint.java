@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import nl.workingspirit.ws_bootcampappbackend.controller.CodeAnswerSubmitService;
 import nl.workingspirit.ws_bootcampappbackend.domein.CodeAnswerSubmit;
+import nl.workingspirit.ws_bootcampappbackend.domein.LessonSubjects;
 
 @RestController
 public class CodeAnswerSubmitEndpoint {
