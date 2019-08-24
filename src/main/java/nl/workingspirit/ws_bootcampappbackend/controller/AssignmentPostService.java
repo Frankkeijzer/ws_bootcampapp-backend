@@ -13,7 +13,8 @@ public class AssignmentPostService {
 	@Autowired
 	AssignmentRepository AssignmentRepository;
 	
-	public void postAssignment(Assignment assignment) {
-		AssignmentRepository.save(assignment);
+	public Assignment postAssignment(Assignment assignment) {
+		System.out.println("\n hier mottie dus gaan saven");
+		return AssignmentRepository.save(assignment);
 	}
 }

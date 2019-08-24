@@ -1,5 +1,6 @@
 package nl.workingspirit.ws_bootcampappbackend.domein;
 
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
@@ -32,11 +33,11 @@ public class Assignment {
 	private String title;
 	@Column(length = 10000, nullable=false)
 	private String codeExample;
-	
+
 	@OneToMany(cascade = CascadeType.ALL, fetch= FetchType.EAGER, mappedBy="assignment")
 	@JsonIgnoreProperties({"assignment"})
-	private List<CodeAnswerSubmit> codeAnswerSubmit;
-	
+	private List<CodeAnswerSubmit> codeAnswerSubmit = new ArrayList<>();
+
 	public Assignment() {	
 	}
 	
